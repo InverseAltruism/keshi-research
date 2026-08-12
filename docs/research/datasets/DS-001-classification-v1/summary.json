@@ -1,0 +1,3422 @@
+{
+ "preregCommit": "11a517a02cedfb97360da95bfaf8e4f114374dfd",
+ "toolVersion": "a95cec38ad51-w81398ae",
+ "decoderVersion": 1,
+ "snapshotTipHeight": 96452,
+ "snapshotTipHash": "ae8d9648e53ba467fb1c163a05eddac38cbe14066b04ad5ef899a26b90f2af2a",
+ "toHeight": 96405,
+ "blocks": 96406,
+ "empty": 1,
+ "thresholds": {
+  "tvConsistent": 0.1,
+  "tvIndeterminate": 0.25,
+  "minT3Sample": 200,
+  "minT4Sample": 50,
+  "constantMShare": 0.9
+ },
+ "strata": [
+  {
+   "pool": "Hero Miners",
+   "era": "pre-moe",
+   "classes": {
+    "CUSTOM": 363
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Hero Miners",
+   "era": "moe-window",
+   "classes": {
+    "CUSTOM": 1838
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Hero Miners",
+   "era": "dense-only",
+   "classes": {
+    "CUSTOM": 310
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Hero Miners",
+   "era": "rank-penalty",
+   "classes": {
+    "CUSTOM": 8
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Kryptex",
+   "era": "pre-moe",
+   "classes": {
+    "CUSTOM": 230
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Kryptex",
+   "era": "moe-window",
+   "classes": {
+    "CUSTOM": 3476,
+    "OFFICIAL_PATTERN_NONMODEL": 9
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 9,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Kryptex",
+   "era": "dense-only",
+   "classes": {
+    "CUSTOM": 1072,
+    "OFFICIAL_PATTERN_NONMODEL": 8
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 8,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Kryptex",
+   "era": "rank-penalty",
+   "classes": {
+    "CUSTOM": 37,
+    "OFFICIAL_PATTERN_NONMODEL": 6
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "LuckyPool",
+   "era": "pre-moe",
+   "classes": {
+    "CUSTOM": 1003
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "LuckyPool",
+   "era": "moe-window",
+   "classes": {
+    "CUSTOM": 1806
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "LuckyPool",
+   "era": "dense-only",
+   "classes": {
+    "CUSTOM": 318
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "LuckyPool",
+   "era": "rank-penalty",
+   "classes": {
+    "CUSTOM": 12
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Pearl Fortune",
+   "era": "pre-moe",
+   "classes": {
+    "CUSTOM": 3308,
+    "OFFICIAL_PATTERN_NONMODEL": 6
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 6,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Pearl Fortune",
+   "era": "moe-window",
+   "classes": {
+    "CUSTOM": 4078,
+    "OFFICIAL_PATTERN_NONMODEL": 33
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 33,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Pearl Fortune",
+   "era": "dense-only",
+   "classes": {
+    "CUSTOM": 744,
+    "OFFICIAL_PATTERN_NONMODEL": 1
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "Pearl Fortune",
+   "era": "rank-penalty",
+   "classes": {
+    "CUSTOM": 13
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "PearlHash",
+   "era": "pre-moe",
+   "classes": {
+    "CUSTOM": 4313
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "PearlHash",
+   "era": "moe-window",
+   "classes": {
+    "CUSTOM": 4683
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "PearlHash",
+   "era": "dense-only",
+   "classes": {
+    "CUSTOM": 1357
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 0,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "PearlHash",
+   "era": "rank-penalty",
+   "classes": {
+    "CUSTOM": 68,
+    "OFFICIAL_PATTERN_NONMODEL": 1
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 1,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 0,
+    "distinctShare": 0,
+    "modeM": 0,
+    "modeShare": 0,
+    "pow2Share": 0,
+    "above16kShare": 0,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  },
+  {
+   "pool": "unattributed",
+   "era": "pre-moe",
+   "classes": {
+    "CUSTOM": 6070,
+    "MODEL_SHAPED_CUSTOM": 33956,
+    "OFFICIAL_CONSISTENT": 18712,
+    "OFFICIAL_PATTERN_NONMODEL": 3973
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 22685,
+     "matchedN": 127,
+     "tvPrimary": 0.9944015869517302,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 22685,
+     "matchedN": 11,
+     "tvPrimary": 0.9995150980824332,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 22685,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 22685,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 22685,
+     "matchedN": 16165,
+     "tvPrimary": 0.43594843271229583,
+     "tvConditional": 0.4298854339137449,
+     "g": 16996.42035532341,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "MIXTURE_INCONSISTENT"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 22685,
+     "matchedN": 2068,
+     "tvPrimary": 0.9088384394974653,
+     "tvConditional": 0.40746008267910644,
+     "g": 2027.5252268543177,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "MIXTURE_INCONSISTENT"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 22685,
+     "matchedN": 338,
+     "tvPrimary": 0.9851002865329513,
+     "tvConditional": 0.9215686274509806,
+     "g": 1720.7791396045984,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "MIXTURE_INCONSISTENT"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 22685,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 22685,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 22685,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 22685,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    }
+   ],
+   "t4": {
+    "n": 18712,
+    "distinctShare": 0.03302693458743053,
+    "modeM": 32768,
+    "modeShare": 0.8077704147071398,
+    "pow2Share": 0.9532385634886704,
+    "above16kShare": 0.8176036767849508,
+    "constantM": false,
+    "pow2M": true,
+    "sufficient": true
+   }
+  },
+  {
+   "pool": "unattributed",
+   "era": "moe-window",
+   "classes": {
+    "CUSTOM": 2759,
+    "MODEL_SHAPED_CUSTOM": 205,
+    "OFFICIAL_CONSISTENT": 603,
+    "OFFICIAL_PATTERN_NONMODEL": 205
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 808,
+     "matchedN": 596,
+     "tvPrimary": 0.44602989710735774,
+     "tvConditional": 0.4442689827608896,
+     "g": 682.3109947207205,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "MIXTURE_INCONSISTENT"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 808,
+     "matchedN": 7,
+     "tvPrimary": 0.9913366336633663,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 808,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    }
+   ],
+   "t4": {
+    "n": 603,
+    "distinctShare": 0.003316749585406302,
+    "modeM": 32768,
+    "modeShare": 0.9817578772802653,
+    "pow2Share": 1,
+    "above16kShare": 0.9817578772802653,
+    "constantM": true,
+    "pow2M": true,
+    "sufficient": true
+   }
+  },
+  {
+   "pool": "unattributed",
+   "era": "dense-only",
+   "classes": {
+    "CUSTOM": 516,
+    "MODEL_SHAPED_CUSTOM": 33,
+    "OFFICIAL_CONSISTENT": 193,
+    "OFFICIAL_PATTERN_NONMODEL": 69
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 262,
+     "matchedN": 193,
+     "tvPrimary": 0.4509803921568627,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 262,
+     "matchedN": 0,
+     "tvPrimary": 1,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "MIXTURE_INCONSISTENT",
+     "condVerdict": "DEGENERATE"
+    }
+   ],
+   "t4": {
+    "n": 193,
+    "distinctShare": 0.0051813471502590676,
+    "modeM": 32768,
+    "modeShare": 1,
+    "pow2Share": 1,
+    "above16kShare": 1,
+    "constantM": true,
+    "pow2M": true,
+    "sufficient": true
+   }
+  },
+  {
+   "pool": "unattributed",
+   "era": "rank-penalty",
+   "classes": {
+    "CUSTOM": 5,
+    "MODEL_SHAPED_CUSTOM": 1,
+    "OFFICIAL_CONSISTENT": 2,
+    "OFFICIAL_PATTERN_NONMODEL": 2
+   },
+   "t3": [
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 1,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 2,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 4,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.1-8B",
+     "tp": 8,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 1,
+     "n": 4,
+     "matchedN": 2,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 2,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 4,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Llama-3.3-70B",
+     "tp": 8,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 1,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 2,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    },
+    {
+     "model": "Qwen3-30B-A3B",
+     "tp": 4,
+     "n": 4,
+     "matchedN": 0,
+     "tvPrimary": 0,
+     "tvConditional": 0,
+     "g": 0,
+     "verdict": "INSUFFICIENT_SAMPLE",
+     "condVerdict": "INSUFFICIENT_SAMPLE"
+    }
+   ],
+   "t4": {
+    "n": 2,
+    "distinctShare": 0.5,
+    "modeM": 32768,
+    "modeShare": 1,
+    "pow2Share": 1,
+    "above16kShare": 1,
+    "constantM": false,
+    "pow2M": false,
+    "sufficient": false
+   }
+  }
+ ]
+}

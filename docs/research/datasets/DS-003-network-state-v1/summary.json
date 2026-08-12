@@ -1,0 +1,31 @@
+{
+ "toolVersion": "2cbc61a7f302-wb1bbc97",
+ "decoderVersion": 1,
+ "snapshotTip": 97710,
+ "snapshotHash": "b9767036f910907470174c94c65a70986e17fb1045c6ce8b7d356c4b3f3e25eb",
+ "toHeight": 97710,
+ "binWidth": 500,
+ "coarseBinWidth": 1000,
+ "blocks": 97711,
+ "coverage": {
+  "canonicalBlocks": 97711,
+  "decodedParams": 97711,
+  "heightSpan": 97711,
+  "minHeight": 0,
+  "maxHeight": 97710
+ },
+ "matchedSources": [
+  {
+   "Dir": "DS-002-weight-scan-v1",
+   "SHA256": "6d28d8f4e1ab0eb77fd54f3de4b3dbcfb86f2f05cd6ff81ec2d99f7d2e1292b4"
+  },
+  {
+   "Dir": "DS-002b-gemma-v1",
+   "SHA256": "9264ec242c4f3741e252f97f166d105f8257c415e685d30e2b70c06c8a321ecc"
+  },
+  {
+   "Dir": "DS-002b-o-tp48-v1",
+   "SHA256": "981fb4ba33f3a6456ae2215992355e7376f5f3c390596fab5fd07b466e4db26a"
+  }
+ ]
+}

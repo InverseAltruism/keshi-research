@@ -1,0 +1,184 @@
+{
+ "dictionary": "/opt/pearl_keshi/keshi/docs/research/shape-dictionary-v1.json",
+ "ds001": "/opt/pearl_keshi/keshi/docs/research/datasets/DS-001-classification-v1/blocks.jsonl.gz",
+ "tip": 96405,
+ "boundary": 54972,
+ "forks": [
+  71935,
+  91630,
+  96251
+ ],
+ "unresolvedTargets": [],
+ "fullyShadowedTargets": [
+  "Llama-3.1-70B-base",
+  "Llama-3.1-8B-base",
+  "Mistral-7B-v0.3",
+  "Mixtral-8x7B",
+  "Qwen3-30B-A3B-base"
+ ],
+ "segments": [
+  {
+   "name": "S1 attested era        h1-54,972",
+   "lo": 1,
+   "hi": 54972,
+   "blocks": 54972,
+   "pearlShaped": 50171,
+   "nonPearlMatched": 371,
+   "trailerInconsistentShapeHits": 0,
+   "pow2NonPearl": 4592,
+   "pow2BothNonPearl": 4281,
+   "matchesNothing": 4430,
+   "perModel": {
+    "Qwen3-235B-A22B": 371
+   },
+   "perCell": {
+    "Qwen3-235B-A22B/o@tp1": 371
+   }
+  },
+  {
+   "name": "S2 post-extinction     h54,973-71,934",
+   "lo": 54973,
+   "hi": 71934,
+   "blocks": 16962,
+   "pearlShaped": 2508,
+   "nonPearlMatched": 0,
+   "trailerInconsistentShapeHits": 0,
+   "pow2NonPearl": 13606,
+   "pow2BothNonPearl": 13544,
+   "matchesNothing": 14454,
+   "perModel": {},
+   "perCell": {}
+  },
+  {
+   "name": "S3 moe-window          h71,935-91,629",
+   "lo": 71935,
+   "hi": 91629,
+   "blocks": 19695,
+   "pearlShaped": 808,
+   "nonPearlMatched": 71,
+   "trailerInconsistentShapeHits": 0,
+   "pow2NonPearl": 14881,
+   "pow2BothNonPearl": 12950,
+   "matchesNothing": 18816,
+   "perModel": {
+    "Llama-4-Scout-17B-16E": 60,
+    "Mistral-Nemo-12B": 60,
+    "Mistral-Small-24B": 120,
+    "Qwen3-32B": 60,
+    "DeepSeek-V2": 60,
+    "Qwen3-8B": 11
+   },
+   "perCell": {
+    "Llama-4-Scout-17B-16E/down@tp4": 60,
+    "Mistral-Nemo-12B/o@tp1": 60,
+    "Mistral-Small-24B/o@tp1": 60,
+    "Mistral-Small-24B/down@tp8": 60,
+    "Qwen3-32B/o@tp2": 60,
+    "DeepSeek-V2/o@tp4": 60,
+    "Qwen3-8B/gate_up_fused@tp2": 11
+   }
+  },
+  {
+   "name": "S4 dense-only          h91,630-96,250",
+   "lo": 91630,
+   "hi": 96250,
+   "blocks": 4621,
+   "pearlShaped": 226,
+   "nonPearlMatched": 9,
+   "trailerInconsistentShapeHits": 0,
+   "pow2NonPearl": 2906,
+   "pow2BothNonPearl": 2906,
+   "matchesNothing": 4386,
+   "perModel": {
+    "Llama-4-Scout-17B-16E": 8,
+    "Mistral-Nemo-12B": 8,
+    "Mistral-Small-24B": 16,
+    "Qwen3-32B": 8,
+    "DeepSeek-V2": 8,
+    "Qwen3-8B": 1
+   },
+   "perCell": {
+    "Llama-4-Scout-17B-16E/down@tp4": 8,
+    "Mistral-Nemo-12B/o@tp1": 8,
+    "Mistral-Small-24B/o@tp1": 8,
+    "Mistral-Small-24B/down@tp8": 8,
+    "Qwen3-32B/o@tp2": 8,
+    "DeepSeek-V2/o@tp4": 8,
+    "Qwen3-8B/gate_up_fused@tp2": 1
+   }
+  },
+  {
+   "name": "S5 rank-penalty        h96,251-",
+   "lo": 96251,
+   "hi": 96405,
+   "blocks": 155,
+   "pearlShaped": 3,
+   "nonPearlMatched": 0,
+   "trailerInconsistentShapeHits": 0,
+   "pow2NonPearl": 71,
+   "pow2BothNonPearl": 71,
+   "matchesNothing": 152,
+   "perModel": {},
+   "perCell": {}
+  }
+ ],
+ "matchedShapes": [
+  {
+   "n": 4096,
+   "k": 8192,
+   "blocks": 371,
+   "models": [
+    "Qwen3-235B-A22B"
+   ],
+   "cells": [
+    "Qwen3-235B-A22B/o@tp1"
+   ],
+   "distinctM": 1,
+   "heights": [
+    31702,
+    38537
+   ]
+  },
+  {
+   "n": 5120,
+   "k": 4096,
+   "blocks": 68,
+   "models": [
+    "DeepSeek-V2",
+    "Llama-4-Scout-17B-16E",
+    "Mistral-Nemo-12B",
+    "Mistral-Small-24B",
+    "Qwen3-32B"
+   ],
+   "cells": [
+    "DeepSeek-V2/o@tp4",
+    "Llama-4-Scout-17B-16E/down@tp4",
+    "Mistral-Nemo-12B/o@tp1",
+    "Mistral-Small-24B/down@tp8",
+    "Mistral-Small-24B/o@tp1",
+    "Qwen3-32B/o@tp2"
+   ],
+   "distinctM": 1,
+   "heights": [
+    75253,
+    93837
+   ]
+  },
+  {
+   "n": 12288,
+   "k": 4096,
+   "blocks": 12,
+   "models": [
+    "Qwen3-8B"
+   ],
+   "cells": [
+    "Qwen3-8B/gate_up_fused@tp2"
+   ],
+   "distinctM": 1,
+   "heights": [
+    75309,
+    93087
+   ]
+  }
+ ]
+}

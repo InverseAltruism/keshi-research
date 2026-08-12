@@ -1,0 +1,386 @@
+{
+  "dataset": "consensus-changes-v1",
+  "title": "Consensus changes on Pearl mainnet, with activation notice",
+  "compiled": "2026-08-12",
+  "appendOnly": true,
+  "register": "docs/registry/PCCR.md",
+  "unit": "activated mainnet consensus change, one per register entry",
+  "countingRule": "The unit is an activated mainnet consensus change, one per register entry. Activation is height-gated or release-gated; both count. The genesis baseline is a rule set rather than a change and is excluded. An entry that has not activated is excluded until it does. Testnet and testnet2 activations are recorded inside the register entries and are never counted. Rows carrying counted=false are present for the timeline only and are outside every count on this dataset.",
+  "framing": {
+    "statement": "These are neutral, dated facts about public artifacts. None of this is a claim of bad faith.",
+    "pinnedPhrase": "None of this is a claim of bad faith.",
+    "source": "docs/research/outreach/pip-draft-consensus-change-process.md, Motivation",
+    "note": "No party is named anywhere in this dataset, per the research-integrity rules. pinnedPhrase is the draft's own sentence and is checked verbatim against it by the generator."
+  },
+  "confidence": {
+    "SRC": "Pinned source at a named tag.",
+    "LIVE": "Observed on chain through this project's own index.",
+    "3P": "Third party, here the public repository's release and tag metadata."
+  },
+  "maintenance": [
+    "Append-only. A row is added when a change activates on mainnet and is never edited in place; a correction ships as a new dated string in that row's correction field or as a new note, exactly as the register does.",
+    "Every row is cross-checked against docs/registry/PCCR.md by apps/web/scripts/build-proposals.mjs in the keshi-web repo, which fails when an id, an activation height, a fork-class label, a shipping release or a notice-window figure here disagrees with the register.",
+    "A notice window is recorded only where one interval is defensible from public artifacts. Where the record supports two endpoints or none, noticeWindowSeconds is null, noticeWindowReason states why, and any measurable interval is carried as an explicitly non-headline candidate."
+  ],
+  "fields": {
+    "id": "Register entry id, PCCR-000N. The join key against docs/registry/PCCR.md.",
+    "title": "The register entry's title.",
+    "network": "Always mainnet in this dataset. Testnet activations stay inside the register entries.",
+    "activation.height": "Activation height, or null for a release-gated or unactivated change.",
+    "activation.releaseGated": "True when the change takes effect on upgrade rather than at a height.",
+    "activation.blockTimeUtc": "Timestamp of the activation block, from this project's index (LIVE). Null when there is no activation block.",
+    "activation.blockTimeBasis": "Confidence tag for blockTimeUtc.",
+    "activation.date": "UTC date of the activation, derived from blockTimeUtc, or from the gating release for a release-gated change.",
+    "kind": "Machine token for the fork class.",
+    "kindLabel": "The register's own wording for the fork class, checked literally against the entry.",
+    "summary": "One sentence of what changed, at the level the register states publicly.",
+    "pip": "Governing PIP, or null where none documents the change.",
+    "pipStatus": "That PIP's status, or null.",
+    "shippedIn": "The release token the register's Shipped-in row names, checked literally against the entry.",
+    "release": "The release carrying the height that actually activated (or the gating release). publishedAtUtc is null when the tag has no release object; source names the basis either way.",
+    "firstSchedulingRelease": "The earlier release that first scheduled this change at a different height, where one exists. Null otherwise.",
+    "noticeWindowSeconds": "Seconds from the release publication to the activation block, only where one interval is defensible. Null otherwise.",
+    "noticeWindowBasis": "What the two endpoints are, where noticeWindowSeconds is set. Null otherwise.",
+    "noticeWindowReason": "Why no window is stated, where noticeWindowSeconds is null. Null otherwise.",
+    "correction": "A dated correction to a figure the register carries, where one applies.",
+    "counted": "True where the register's counting rule counts this entry.",
+    "countedReason": "Why a counted=false row is excluded.",
+    "evidence": "Code evidence as file:line @ tag, with the confidence tag, copied from the register entry.",
+    "notes": "Dated facts about this change that belong on the record and not in a chart."
+  },
+  "reference": {
+    "label": "Proposed minimum activation notice",
+    "proposedMinimumNoticeBlocks": 4320,
+    "targetBlockSeconds": 194,
+    "proposalSlug": "pip-consensus-change-process",
+    "source": "docs/research/outreach/pip-draft-consensus-change-process.md, Specification item 3",
+    "note": "A proposal, not a measurement. The seconds and days equivalents are computed by the generator from these two numbers and are never typed here. The block target is the genesis TargetTimePerBlock of 3m14s recorded in PCCR-0001."
+  },
+  "rows": [
+    {
+      "id": "PCCR-0001",
+      "title": "Genesis consensus baseline",
+      "network": "mainnet",
+      "activation": {
+        "height": 0,
+        "releaseGated": false,
+        "blockTimeUtc": "2026-04-27T09:00:00Z",
+        "blockTimeBasis": "LIVE",
+        "date": "2026-04-27"
+      },
+      "kind": "baseline",
+      "kindLabel": "Baseline (not a change)",
+      "summary": "The launch rule set: V1 certificates, dense-only proof of useful work, WTEMA difficulty, smooth emission with no halvings, Taproot-only outputs.",
+      "pip": null,
+      "pipStatus": null,
+      "shippedIn": "v1.0.x",
+      "release": {
+        "tag": null,
+        "publishedAtUtc": null,
+        "hasReleaseObject": false,
+        "source": "No v1.0.x tag exists in the repository's tag list, checked 2026-08-12: 13 tags, of which 8 are node tags (v1.1.5 through v1.4.1) and 5 are wallet tags (3P). The register's \"pearl v1.0.x\" names the launch series, not a published tag."
+      },
+      "firstSchedulingRelease": null,
+      "noticeWindowSeconds": null,
+      "noticeWindowBasis": null,
+      "noticeWindowReason": "Genesis is a rule set rather than a change, so there is no earlier rule to give notice of and no interval to measure.",
+      "correction": null,
+      "counted": false,
+      "countedReason": "Excluded by the counting rule: a baseline, not a change.",
+      "evidence": [
+        {
+          "ref": "node/chaincfg/params.go @ v1.2.1",
+          "detail": "Genesis block, PowLimitBits 0x1B00FFFF, TargetTimePerBlock 3m14s.",
+          "confidence": "SRC"
+        }
+      ],
+      "notes": [
+        "The register's genesis time constant 1777280400 and this project's index agree on the instant, verified 2026-08-12: both resolve to 2026-04-27T09:00:00Z."
+      ]
+    },
+    {
+      "id": "PCCR-0002",
+      "title": "MoE hard fork (V2 certificates)",
+      "network": "mainnet",
+      "activation": {
+        "height": 71935,
+        "releaseGated": false,
+        "blockTimeUtc": "2026-06-12T11:45:48Z",
+        "blockTimeBasis": "LIVE",
+        "date": "2026-06-12"
+      },
+      "kind": "hard-fork",
+      "kindLabel": "Hard fork",
+      "summary": "V2 certificates required; MoE (grouped-GEMM) proofs become legal.",
+      "pip": "PIP-2",
+      "pipStatus": "Final",
+      "shippedIn": "v1.1.x",
+      "release": {
+        "tag": null,
+        "publishedAtUtc": null,
+        "hasReleaseObject": false,
+        "source": "The release that scheduled this fork is not in the repository's tag record. Checked 2026-08-12: the earliest node tag is v1.1.5, published 2026-07-06T16:57:36Z, which is after the 2026-06-12 activation (3P)."
+      },
+      "firstSchedulingRelease": null,
+      "noticeWindowSeconds": null,
+      "noticeWindowBasis": null,
+      "noticeWindowReason": "No scheduling release exists in the public tag record to measure from. Search space: the repository's complete tag list on 2026-08-12, 13 tags, of which 8 are node tags (v1.1.5 through v1.4.1) and 5 are wallet tags. This is an absence within that search space and not a claim that no release existed.",
+      "correction": null,
+      "counted": true,
+      "countedReason": null,
+      "evidence": [
+        {
+          "ref": "node/chaincfg/params.go @ v1.2.1",
+          "detail": "MoEForkHeight.",
+          "confidence": "SRC"
+        },
+        {
+          "ref": "node/wire/certificate_v2.go @ v1.2.1",
+          "detail": "V2 certificate type.",
+          "confidence": "SRC"
+        }
+      ],
+      "notes": [
+        "The only activated mainnet consensus change with a PIP.",
+        "Usage inside the MoE window is measured in OBS-003 section 2, and the retraction is discussed in OBS-006."
+      ]
+    },
+    {
+      "id": "PCCR-0003",
+      "title": "Dense-only softfork (MoE retracted)",
+      "network": "mainnet",
+      "activation": {
+        "height": 91630,
+        "releaseGated": false,
+        "blockTimeUtc": "2026-07-23T10:57:23Z",
+        "blockTimeBasis": "LIVE",
+        "date": "2026-07-23"
+      },
+      "kind": "soft-fork",
+      "kindLabel": "Softfork",
+      "summary": "MoE proofs are rejected again, retracting the capability introduced at 71,935.",
+      "pip": null,
+      "pipStatus": null,
+      "shippedIn": "v1.2.0",
+      "release": {
+        "tag": "v1.2.1",
+        "publishedAtUtc": "2026-07-23T10:05:13Z",
+        "hasReleaseObject": true,
+        "source": "GitHub release publishedAt, checked 2026-08-12 (3P). This is the release carrying the height that activated."
+      },
+      "firstSchedulingRelease": {
+        "tag": "v1.2.0",
+        "publishedAtUtc": null,
+        "tagCommitUtc": "2026-07-23T08:13:11Z",
+        "tagCommitSha": "670da8c0",
+        "hasReleaseObject": false,
+        "scheduledHeight": 91600,
+        "source": "No GitHub release object exists for the tag, checked 2026-08-12; the tag ref resolves to commit 670da8c0 with committer date 2026-07-23T08:13:11Z (3P)."
+      },
+      "noticeWindowSeconds": null,
+      "noticeWindowBasis": null,
+      "noticeWindowReason": "Two releases scheduled this fork at two heights, and the first has no release object, so the record supports two defensible endpoints and no single one. Both intervals are carried as non-headline candidates; neither is a notice window this dataset states.",
+      "correction": null,
+      "counted": true,
+      "countedReason": null,
+      "evidence": [
+        {
+          "ref": "node/chaincfg/params.go @ v1.2.1",
+          "detail": "DenseOnlyForkHeight.",
+          "confidence": "SRC"
+        }
+      ],
+      "notes": [
+        "The capability introduced at 71,935 was retracted with no PIP in either direction beyond PIP-2 itself.",
+        "The retraction span in blocks and days is computed by the generator from this row and PCCR-0002, and is checked against the register's precision note dated 2026-08-09."
+      ]
+    },
+    {
+      "id": "PCCR-0004",
+      "title": "IsMoE semantic fix",
+      "network": "mainnet",
+      "activation": {
+        "height": null,
+        "releaseGated": true,
+        "blockTimeUtc": null,
+        "blockTimeBasis": null,
+        "date": "2026-07-23"
+      },
+      "kind": "semantic-change",
+      "kindLabel": "Consensus-adjacent semantic change",
+      "summary": "The MoE classification predicate changed, which changes which serialized certificates a node classifies as MoE.",
+      "pip": null,
+      "pipStatus": null,
+      "shippedIn": "v1.2.1",
+      "release": {
+        "tag": "v1.2.1",
+        "publishedAtUtc": "2026-07-23T10:05:13Z",
+        "hasReleaseObject": true,
+        "source": "GitHub release publishedAt, checked 2026-08-12 (3P). This is the gating release: the change takes effect on upgrade."
+      },
+      "firstSchedulingRelease": null,
+      "noticeWindowSeconds": null,
+      "noticeWindowBasis": null,
+      "noticeWindowReason": "Release-gated rather than height-gated: the rule changes when a node upgrades, so there is no activation block and no interval to measure.",
+      "correction": null,
+      "counted": true,
+      "countedReason": null,
+      "evidence": [
+        {
+          "ref": "node/wire/certificate_v2.go @ v1.2.1",
+          "detail": "IsMoE(), v1.2.1 against v1.2.0.",
+          "confidence": "SRC"
+        }
+      ],
+      "notes": [
+        "Recorded because classification feeds validity under PCCR-0003.",
+        "activation.date is the v1.2.1 publication date, not a block date."
+      ]
+    },
+    {
+      "id": "PCCR-0005",
+      "title": "Rank-penalty softfork",
+      "network": "mainnet",
+      "activation": {
+        "height": 96251,
+        "releaseGated": false,
+        "blockTimeUtc": "2026-08-06T03:59:44Z",
+        "blockTimeBasis": "LIVE",
+        "date": "2026-08-06"
+      },
+      "kind": "soft-fork",
+      "kindLabel": "Softfork",
+      "summary": "Certificates declaring a rank below 128 are rejected, and the difficulty bound is scaled with the declared rank.",
+      "pip": null,
+      "pipStatus": null,
+      "shippedIn": "v1.3.0",
+      "release": {
+        "tag": "v1.3.0",
+        "publishedAtUtc": "2026-08-05T15:45:09Z",
+        "hasReleaseObject": true,
+        "source": "GitHub release publishedAt, checked 2026-08-12 (3P)."
+      },
+      "firstSchedulingRelease": null,
+      "noticeWindowSeconds": 44075,
+      "noticeWindowBasis": "From the v1.3.0 release publication, 2026-08-05T15:45:09Z (3P), to the timestamp of block 96,251, 2026-08-06T03:59:44Z (LIVE). One release, one height, both endpoints public.",
+      "noticeWindowReason": null,
+      "correction": "The register's Shipped-in row says about 18.5 hours. Its precision note dated 2026-08-11 recomputes the interval from the two endpoints and states the 18.5-hour figure is not reproducible from them. The original row stands unedited under the register's maintenance rules, and this dataset carries the recomputed value.",
+      "counted": true,
+      "countedReason": null,
+      "evidence": [
+        {
+          "ref": "node/chaincfg/params.go:353 @ v1.3.0",
+          "detail": "RankPenaltyForkHeight.",
+          "confidence": "SRC"
+        },
+        {
+          "ref": "zk-pow/src/api/sanity_checks.rs:164 @ v1.3.0",
+          "detail": "PENALTY_BASE_RANK = 128.",
+          "confidence": "SRC"
+        }
+      ],
+      "notes": [
+        "The transition across this height is measured in OBS-001.",
+        "Testnet and testnet2 activations are on the register's record and outside every count here."
+      ]
+    },
+    {
+      "id": "PCCR-0006",
+      "title": "PIP-3, V3 FP8 certificates (draft)",
+      "network": "mainnet",
+      "activation": {
+        "height": null,
+        "releaseGated": false,
+        "blockTimeUtc": null,
+        "blockTimeBasis": null,
+        "date": null
+      },
+      "kind": "proposed-hard-fork",
+      "kindLabel": "Hard fork (proposed)",
+      "summary": "A proposed hard fork for FP8 certificates with a hardware whitelist and advance hardware declaration. No activation height is assigned.",
+      "pip": "PIP-3",
+      "pipStatus": "Draft",
+      "shippedIn": null,
+      "release": null,
+      "firstSchedulingRelease": null,
+      "noticeWindowSeconds": null,
+      "noticeWindowBasis": null,
+      "noticeWindowReason": "Not activated: the draft carries no activation height, so there is no interval to measure.",
+      "correction": null,
+      "counted": false,
+      "countedReason": "Excluded by the counting rule until it activates.",
+      "evidence": [
+        {
+          "ref": "pearl-research-labs/pips pip-0003",
+          "detail": "Draft, dated 2026-07-30.",
+          "confidence": "3P"
+        }
+      ],
+      "notes": [
+        "Certificate version 3 was consumed by PCCR-0007 on 2026-08-11, so the draft's proposed V3 numbering is stale as of that date. Nothing in the shipped V3 is FP8; the two are separate changes that collided on a version number, and the draft's substance is untouched by this.",
+        "Carried here so the timeline can show a proposal that has not activated. It is outside every count on this dataset."
+      ]
+    },
+    {
+      "id": "PCCR-0007",
+      "title": "Salted noise-seed hard fork (V3 certificates)",
+      "network": "mainnet",
+      "activation": {
+        "height": 99000,
+        "releaseGated": false,
+        "blockTimeUtc": "2026-08-11T12:03:43Z",
+        "blockTimeBasis": "LIVE",
+        "date": "2026-08-11"
+      },
+      "kind": "hard-fork",
+      "kindLabel": "Hard fork",
+      "summary": "V3 certificates required network-wide at a single height. The declared dimensions enter the noise-seed derivation; the wire layout is unchanged from V2.",
+      "pip": null,
+      "pipStatus": null,
+      "shippedIn": "v1.4.1",
+      "release": {
+        "tag": "v1.4.1",
+        "publishedAtUtc": "2026-08-11T10:29:47Z",
+        "hasReleaseObject": true,
+        "source": "GitHub release publishedAt, checked 2026-08-12 (3P). This is the release carrying the height that activated."
+      },
+      "firstSchedulingRelease": {
+        "tag": "v1.4.0",
+        "publishedAtUtc": null,
+        "tagCommitUtc": "2026-08-11T08:54:49Z",
+        "tagCommitSha": "fc5ca65a",
+        "hasReleaseObject": false,
+        "scheduledHeight": 98900,
+        "source": "No GitHub release object exists for the tag, checked 2026-08-12; the tag ref resolves to commit fc5ca65a with committer date 2026-08-11T08:54:49Z (3P)."
+      },
+      "noticeWindowSeconds": 5636,
+      "noticeWindowBasis": "From the v1.4.1 release publication, 2026-08-11T10:29:47Z (3P), to the timestamp of block 99,000, 2026-08-11T12:03:43Z (LIVE). The basis is the release carrying the height that actually activated; v1.4.0 scheduled a different height and produced no release event to measure from.",
+      "noticeWindowReason": null,
+      "correction": null,
+      "counted": true,
+      "countedReason": null,
+      "evidence": [
+        {
+          "ref": "node/chaincfg/params.go:371 @ v1.4.1",
+          "detail": "Mainnet SaltedSeedForkHeight 99000.",
+          "confidence": "SRC"
+        },
+        {
+          "ref": "node/wire/certificate.go:84 @ v1.4.1",
+          "detail": "CertificateVersionV3 = 3.",
+          "confidence": "SRC"
+        },
+        {
+          "ref": "node/blockchain/validate.go:539-543 @ v1.4.1",
+          "detail": "Strict cutover: a block's certificate version must equal the version required at its height.",
+          "confidence": "SRC"
+        }
+      ],
+      "notes": [
+        "The upgrade guide shipped in this release states that mining software deriving seeds the old way produces invalid shares from the fork height on, so the notice window was also the window in which mining software had to be rebuilt. That is the operational difference from PCCR-0002, where unchanged miners kept producing valid work.",
+        "Three mainnet heights appear in the public record for this fork: 98,830 in the pull request body as opened, 98,900 in v1.4.0, and 99,000 in v1.4.1. The sequence is a dated fact from the public body-edit history and lives in the register entry.",
+        "Block 98,900 was mined carrying a V2 certificate after v1.4.1 was published, so the replacement height shipped before the height it replaced was reached."
+      ]
+    }
+  ]
+}

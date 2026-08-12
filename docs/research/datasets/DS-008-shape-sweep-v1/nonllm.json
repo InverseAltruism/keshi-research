@@ -1,0 +1,541 @@
+{
+ "dictionary": "/opt/pearl_keshi/keshi/docs/research/shape-dictionary-v1.json",
+ "ds001": "/opt/pearl_keshi/keshi/docs/research/datasets/DS-001-classification-v1/blocks.jsonl.gz",
+ "tip": 96405,
+ "nonEmptyBlocks": 96405,
+ "floors": {
+  "minK": 1024,
+  "kMultiple": 64,
+  "minN": 256
+ },
+ "boundary": 54972,
+ "forks": [
+  71935,
+  91630,
+  96251
+ ],
+ "checkpoints": [
+  {
+   "label": "CLIP-ViT-L-14",
+   "repo": "openai/clip-vit-large-patch14",
+   "revision": "32bd64288804d66eefd0ccbe215aa642df71cc41",
+   "linearTensors": 216
+  },
+  {
+   "label": "CLIP-ViT-H-14",
+   "repo": "laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
+   "revision": "1c2b8495b28150b8a4922ee1c8edee224c284c0c",
+   "linearTensors": 336
+  },
+  {
+   "label": "SigLIP-So400m",
+   "repo": "google/siglip-so400m-patch14-384",
+   "revision": "9fdffc58afc957d1a03a25b10dba0329ab15c2a3",
+   "linearTensors": 324
+  },
+  {
+   "label": "DINOv2-giant",
+   "repo": "facebook/dinov2-giant",
+   "revision": "611a9d42f2335e0f921f1e313ad3c1b7178d206d",
+   "linearTensors": 240
+  },
+  {
+   "label": "InternViT-6B",
+   "repo": "OpenGVLab/InternViT-6B-448px-V1-5",
+   "revision": "03e138c81d3fd538c77439fd43a42c067d827427",
+   "linearTensors": 180
+  },
+  {
+   "label": "Whisper-large-v3",
+   "repo": "openai/whisper-large-v3",
+   "revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+   "linearTensors": 512
+  },
+  {
+   "label": "BERT-large",
+   "repo": "google-bert/bert-large-uncased",
+   "revision": "6da4b6a26a1877e173fca3225479512db81a5e5b",
+   "linearTensors": 144
+  },
+  {
+   "label": "BGE-large-en-v1.5",
+   "repo": "BAAI/bge-large-en-v1.5",
+   "revision": "d4aa6901d3a41ba39fb536a557fa166f842b0e09",
+   "linearTensors": 144
+  },
+  {
+   "label": "BERT-base",
+   "repo": "google-bert/bert-base-uncased",
+   "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+   "linearTensors": 72
+  }
+ ],
+ "hypotheses": [
+  {
+   "n": 768,
+   "k": 768,
+   "class": "PROTOCOL_EXCLUDED",
+   "note": "k=768 < 1024",
+   "sources": [
+    "BERT-base/encoder/o",
+    "CLIP-ViT-L-14/text_model/o"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 768,
+   "k": 3072,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "BERT-base/encoder/mlp_out",
+    "CLIP-ViT-L-14/text_model/mlp_out"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1024,
+   "k": 1024,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "BERT-large/encoder/o",
+    "BGE-large-en-v1.5/encoder/o",
+    "CLIP-ViT-H-14/text_model/o",
+    "CLIP-ViT-L-14/vision_model/o"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1024,
+   "k": 4096,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "BERT-large/encoder/mlp_out",
+    "BGE-large-en-v1.5/encoder/mlp_out",
+    "CLIP-ViT-H-14/text_model/mlp_out",
+    "CLIP-ViT-L-14/vision_model/mlp_out"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1152,
+   "k": 1152,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "SigLIP-So400m/text_model/o",
+    "SigLIP-So400m/vision_model/o"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1152,
+   "k": 4304,
+   "class": "PROTOCOL_EXCLUDED",
+   "note": "k % 64 == 16",
+   "sources": [
+    "SigLIP-So400m/text_model/mlp_out",
+    "SigLIP-So400m/vision_model/mlp_out"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1280,
+   "k": 1280,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "CLIP-ViT-H-14/vision_model/o",
+    "Whisper-large-v3/decoder/o",
+    "Whisper-large-v3/decoder/xattn_o",
+    "Whisper-large-v3/encoder/o"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1280,
+   "k": 5120,
+   "class": "TESTED",
+   "note": "also an LLM dictionary pair: Qwen3-32B, Qwen3.6-27B-heretic-pearl",
+   "sources": [
+    "CLIP-ViT-H-14/vision_model/mlp_out",
+    "Whisper-large-v3/decoder/mlp_out",
+    "Whisper-large-v3/encoder/mlp_out"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1536,
+   "k": 1536,
+   "class": "TESTED",
+   "note": "also an LLM dictionary pair: Kimi-K2",
+   "sources": [
+    "DINOv2-giant/encoder/o"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 1536,
+   "k": 4096,
+   "class": "PEARL_SHADOWED",
+   "note": "equals a pearl-reference pair",
+   "sources": [
+    "DINOv2-giant/encoder/mlp_out"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 2304,
+   "k": 768,
+   "class": "PROTOCOL_EXCLUDED",
+   "note": "k=768 < 1024",
+   "sources": [
+    "BERT-base/encoder/qkv_fused",
+    "CLIP-ViT-L-14/text_model/qkv_fused"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 3072,
+   "k": 768,
+   "class": "PROTOCOL_EXCLUDED",
+   "note": "k=768 < 1024",
+   "sources": [
+    "BERT-base/encoder/mlp_in",
+    "CLIP-ViT-L-14/text_model/mlp_in"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 3072,
+   "k": 1024,
+   "class": "TESTED",
+   "note": "also an LLM dictionary pair: Llama-3.2-3B",
+   "sources": [
+    "BERT-large/encoder/qkv_fused",
+    "BGE-large-en-v1.5/encoder/qkv_fused",
+    "CLIP-ViT-H-14/text_model/qkv_fused",
+    "CLIP-ViT-L-14/vision_model/qkv_fused"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 3200,
+   "k": 3200,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "InternViT-6B/encoder/o"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 3200,
+   "k": 12800,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "InternViT-6B/encoder/mlp_out"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 3456,
+   "k": 1152,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "SigLIP-So400m/text_model/qkv_fused",
+    "SigLIP-So400m/vision_model/qkv_fused"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 3840,
+   "k": 1280,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "CLIP-ViT-H-14/vision_model/qkv_fused",
+    "Whisper-large-v3/decoder/qkv_fused",
+    "Whisper-large-v3/decoder/xattn_qkv_fused",
+    "Whisper-large-v3/encoder/qkv_fused"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 4096,
+   "k": 1024,
+   "class": "PEARL_SHADOWED",
+   "note": "equals a pearl-reference pair",
+   "sources": [
+    "BERT-large/encoder/mlp_in",
+    "BGE-large-en-v1.5/encoder/mlp_in",
+    "CLIP-ViT-H-14/text_model/mlp_in",
+    "CLIP-ViT-L-14/vision_model/mlp_in"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 4304,
+   "k": 1152,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "SigLIP-So400m/text_model/mlp_in",
+    "SigLIP-So400m/vision_model/mlp_in"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 4608,
+   "k": 1536,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "DINOv2-giant/encoder/qkv_fused"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 5120,
+   "k": 1280,
+   "class": "TESTED",
+   "note": "also an LLM dictionary pair: Llama-4-Scout-17B-16E, Phi-4, Qwen2.5-14B, Qwen2.5-32B, Qwen3-14B",
+   "sources": [
+    "CLIP-ViT-H-14/vision_model/mlp_in",
+    "Whisper-large-v3/decoder/mlp_in",
+    "Whisper-large-v3/encoder/mlp_in"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 8192,
+   "k": 1536,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "DINOv2-giant/encoder/mlp_in"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 9600,
+   "k": 3200,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "InternViT-6B/encoder/qkv_fused"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  },
+  {
+   "n": 12800,
+   "k": 3200,
+   "class": "TESTED",
+   "note": "",
+   "sources": [
+    "InternViT-6B/encoder/mlp_in"
+   ],
+   "blocks": 0,
+   "bySegment": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "m": {}
+  }
+ ],
+ "tested": 18,
+ "pearlShadowed": 2,
+ "protocolExcluded": 4,
+ "testedWithHits": 0
+}

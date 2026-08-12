@@ -1,0 +1,98 @@
+{
+ "dataset": "DS-008-shape-sweep-v1",
+ "question": "roadmap C4: did attested model-weight mining end, or move to another known public checkpoint (PLAN-002 9.3 item 5)",
+ "generatedAt": "2026-08-10T18:22:22+00:00",
+ "tools": [
+  {
+   "script": "scripts/shape-sweep-nonpearl.py",
+   "sha256": "a4d1fd10edad489d729769d6504100311195addb13fb538e334918878ef4e6f7"
+  },
+  {
+   "script": "scripts/nonllm-shape-check.py",
+   "sha256": "ae22d6c5a051f9aee9f8d409d11fc1b36f49ec400f7c6836e3a21f60b98528ac"
+  }
+ ],
+ "repoCommitAtRun": "fa02e5cb9011e8a5c400c881f6394c61babeec5c",
+ "python": "3.12.3",
+ "inputs": {
+  "shapeDictionary": {
+   "path": "docs/research/shape-dictionary-v1.json",
+   "sha256": "c8c445e7ce8b303084612e31e98c104185677ecd7afe1166d124995b5249f89b",
+   "generatedAt": "2026-08-09T21:43:01+00:00",
+   "checkpoints": 36,
+   "pearlReference": 4,
+   "targets": 32,
+   "entries": 603,
+   "floors": {
+    "minN": 256,
+    "minK": 1024,
+    "tps": [
+     1,
+     2,
+     4,
+     8
+    ]
+   }
+  },
+  "ds001": {
+   "dir": "docs/research/datasets/DS-001-classification-v1",
+   "blocksSha256": "ce741aad7f00e2450f0b5e34b59fa33fcf68b0c51f2718407a5e6054f7db4a04",
+   "manifestSha256": "3dc293e10f8c1a3e3a93a394f37812fefd8c49b6a2d3d5661e73d864d961783a",
+   "span": {
+    "minHeight": 1,
+    "maxHeight": 96405,
+    "nonEmptyBlocks": 96405
+   }
+  }
+ },
+ "headline": {
+  "segments": [
+   {
+    "name": "S1 attested era h1-54,972",
+    "blocks": 54972,
+    "pearlShaped": 50171,
+    "nonPearlMatched": 371
+   },
+   {
+    "name": "S2 post-extinction h54,973-71,934",
+    "blocks": 16962,
+    "pearlShaped": 2508,
+    "nonPearlMatched": 0
+   },
+   {
+    "name": "S3 moe-window h71,935-91,629",
+    "blocks": 19695,
+    "pearlShaped": 808,
+    "nonPearlMatched": 71
+   },
+   {
+    "name": "S4 dense-only h91,630-96,250",
+    "blocks": 4621,
+    "pearlShaped": 226,
+    "nonPearlMatched": 9
+   },
+   {
+    "name": "S5 rank-penalty h96,251-",
+    "blocks": 155,
+    "pearlShaped": 3,
+    "nonPearlMatched": 0
+   }
+  ],
+  "nonPearlMatchedTotal": 451,
+  "specificityBarPass": 0,
+  "fullyShadowedTargets": [
+   "Llama-3.1-70B-base",
+   "Llama-3.1-8B-base",
+   "Mistral-7B-v0.3",
+   "Mixtral-8x7B",
+   "Qwen3-30B-A3B-base"
+  ],
+  "nonllm": {
+   "hypotheses": 24,
+   "tested": 18,
+   "pearlShadowed": 2,
+   "protocolExcluded": 4,
+   "testedWithHits": 0
+  }
+ }
+}

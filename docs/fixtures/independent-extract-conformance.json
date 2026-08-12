@@ -1,0 +1,15 @@
+{
+  "purpose": "Conformance test of the from-specification second buffer extractor (scripts/independent-extract.py) against the recorded DS-002 buffer hashes. The second extractor was written from the keshi-attest v0 and PREREG-002 section 5 text alone, without reading scripts/extract-weights.py, so a byte-exact agreement demonstrates the buffer construction convention is reimplementable from the spec.",
+  "snapshot": "pearl-ai/Llama-3.3-70B-Instruct-pearl@6cc401caab46ffa688dea3553b2f55d3dfc1d0aa",
+  "targets": [
+    "gate_up_fused:0:1:0",
+    "gate_up_fused:0:2:1",
+    "qkv_fused:40:1:0",
+    "qkv_fused:40:2:1",
+    "o:0:1:0",
+    "o:37:2:1"
+  ],
+  "compared_against": "docs/research/datasets/DS-002-weight-scan-v1/summary.json bufferSha256",
+  "result": "6/6 byte-exact",
+  "date": "2026-08-10"
+}

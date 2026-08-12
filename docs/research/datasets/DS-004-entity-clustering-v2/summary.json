@@ -1,0 +1,759 @@
+{
+ "toolVersion": "0705b6376718-we92ca47",
+ "snapshotTip": 97900,
+ "snapshotHash": "526e0eb90df95ebfabccf9a6069857ad1799c6a9f132a4bbfe6c787c3c598407",
+ "toHeight": 97900,
+ "totalInputs": 6603055,
+ "unresolvedInputs": 0,
+ "canonicalBlocks": 97901,
+ "blocksWithMiner": 97900,
+ "minerAddresses": 9561,
+ "entities": 9303,
+ "largestEntityBlocks": 10861,
+ "largestEntityAddresses": 1,
+ "multiPoolEntities": 0,
+ "entityBasis": {
+  "units": 9303,
+  "denominatorBlocks": 97900,
+  "effectiveUnits": {
+   "value": 28.276102774244467,
+   "defined": true
+  },
+  "top1Share": {
+   "value": 0.11093973442288049,
+   "defined": true
+  },
+  "nakamoto": {
+   "value": 12,
+   "defined": true
+  }
+ },
+ "addressBasis": {
+  "units": 9561,
+  "denominatorBlocks": 97900,
+  "effectiveUnits": {
+   "value": 36.90363955507423,
+   "defined": true
+  },
+  "top1Share": {
+   "value": 0.11093973442288049,
+   "defined": true
+  },
+  "nakamoto": {
+   "value": 49,
+   "defined": true
+  }
+ },
+ "topClusters": [
+  {
+   "representativeAddress": "prl1p50ltku2jjcwdxh4nzjrw98nwdswdn25qdkr2fdtw8hsq3qu9cdhscchnnm",
+   "blocks": 10861,
+   "addresses": 1,
+   "pools": [
+    "PearlHash"
+   ],
+   "attributedBlocks": 10861
+  },
+  {
+   "representativeAddress": "prl1p05tqqdf8tlzxlpt0vxmqp3ky9v76lh0egjejzjhcwwffq98j723q0gyl7t",
+   "blocks": 8931,
+   "addresses": 107,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pl7ch5q7f225sumuutpw9u466auzellprh432z4vd9pfzvnfqmysq2f3xjw",
+   "blocks": 8209,
+   "addresses": 1,
+   "pools": [
+    "Pearl Fortune"
+   ],
+   "attributedBlocks": 8209
+  },
+  {
+   "representativeAddress": "prl1puv0gqv4x0wd0ylwz086y3sqrg4a6umza9r08aecehjrmdqq7mctsmqaqsh",
+   "blocks": 5576,
+   "addresses": 1,
+   "pools": [
+    "Kryptex"
+   ],
+   "attributedBlocks": 5576
+  },
+  {
+   "representativeAddress": "prl1p2w3ruv4qtw7hcxy7gksge6plefxegfxpfcl0kv8pujadsm9a5t2qtvxq7h",
+   "blocks": 3470,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pspr7jpw2a6ed0mw0h03zmu7huxnfjh46j3lzgsrez0ysvh7mcq4q4ztsxp",
+   "blocks": 3250,
+   "addresses": 1,
+   "pools": [
+    "LuckyPool"
+   ],
+   "attributedBlocks": 3250
+  },
+  {
+   "representativeAddress": "prl1pksfzrn8g760gmcqy65a4tl30eyv25eksl5sf8y332kes6fwx9pjszgymmz",
+   "blocks": 2609,
+   "addresses": 1,
+   "pools": [
+    "Hero Miners"
+   ],
+   "attributedBlocks": 2609
+  },
+  {
+   "representativeAddress": "prl1pkydzjqnuunlu86f653939rp6ujtug988rfxj04te32sjspqr2kksts44gl",
+   "blocks": 1966,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pla58v6vfhnp4qnxw0eqzsyzl3e8qrtkv4es5ajjl48yxc8vwfs8qlk7rh9",
+   "blocks": 1342,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pqrw4pw0y03gya5f5jd9lrajjcywm03k6q9d2jefgl8gh258acvnq7am2q8",
+   "blocks": 1295,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pagjpj42yr0w9r6yaklmkyr7p4e0df4l8wqdd2zl949w8cctnl8eqds9v2j",
+   "blocks": 1124,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pp634nelpt75p3f33dn22jfnmw9tp87ncphewwxxanzlp8le485aqehek59",
+   "blocks": 937,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pc8suq88em6z0zke3d7uk2ufjrn0tmuw2acs069sur0wzqp8v0pmq3sxpfy",
+   "blocks": 812,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1paflsp3zxem04lxzc6psw82nwpmv9dm573xmm9trdhssekxu8nzcq24u8gu",
+   "blocks": 623,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p0d3uf706snx75vdehfmwnjqq6c9py98r2jnxsqwxlqun5cjyrzdsfw9064",
+   "blocks": 471,
+   "addresses": 51,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p5r64jgr7grwq5xynw54z6nh4t3lu5vgp2uw25f4tz37y3293a4fq5phxs2",
+   "blocks": 422,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pg6dvcsd27qddnmphd7ykn7dtzc4cuzdk8gpzvlksg7wz98kq4awsjqh96h",
+   "blocks": 399,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pfm9stlx928zfvuxm0vgmycpgqjhchhl3hac4jyqkcs9xnkx5cwaq2ctsqr",
+   "blocks": 284,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1plfhjqxf589vk8tgttk0g5spyvu069ledr7arx0a2a52c5sl2wmuq6kpef9",
+   "blocks": 268,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pq0mue2u3nf9l25vx7wm6fl6syqnpsmnt6fu9jh760dldc7ac5fvq3la04h",
+   "blocks": 264,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pkdcqwgjhh37c952l0q0wmx5h7jtfef7dcnj8mcc69hj6nutxg80sul4wmz",
+   "blocks": 261,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pfv5v6fsjnv2s8vehusvl8w0r8pw5cy49hxl8n2ytuw3metuw5hys5w4cm8",
+   "blocks": 244,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pwyv7gqfdnwmadvtkr9lfhqgwu500k9gz0jfc0snm2vuwqh0k24wsyd7837",
+   "blocks": 226,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1psdghuyqvc6gng3j7wlrrwxl0mrj0y4l7usd72x3g4eq87cf5t0qsggvsjv",
+   "blocks": 216,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p5fj6wca9pzhqqmnyh2d4lnp548yp9d525cm20s5q0hhpdh890vvqgqu8vw",
+   "blocks": 215,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1prxyfeqa034dchvvv4ptmmqq2v98v5aw8cffp5pghlhhfv3z2dssq7xzyv3",
+   "blocks": 211,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pranznu9xqzdgcfmkf0p8su5xma0fjfvpv6yq2qy7wyck8th666rsjw5t3m",
+   "blocks": 206,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p93y2030t0myphyvg2wa50rc6a3cmvvk2ufyh58a0xpkzchyu9qxsw4qaw0",
+   "blocks": 205,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p6pensk2dz74z8usjkt9a6699ueysq8v0wrvpeeep9dah53yy64dqq0zhnn",
+   "blocks": 193,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p4nqv5kk7y39v05pe5ldng3gx2r06v2n80lde2dv7uc29k7t3j6nsg4dh7n",
+   "blocks": 181,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p5kgsyuyjrrpn0u6kq5vtc70ml9tc58ypgp55t8c9mtt2tecyt4dsq4g2s2",
+   "blocks": 178,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pcykyyhm5chnxrstsjxv66l3kan74ademnynt8atz5k6tt5x5gnqqn2rk6q",
+   "blocks": 178,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p85lz74pkuac6l48safjdr8z6x86f5rduqq9zs9n7fnpfzasvjptqzpjz4f",
+   "blocks": 176,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1prytc6cnnffk4hqhew8zlypmhv3mcuw4yzxgayp6un5m5h802f36s2ugl6t",
+   "blocks": 175,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1py6qa680vkq7p3rkv4uyhx6jzmvgnh0jh7r5pqhaecvlvjr0wc3dsr424nw",
+   "blocks": 175,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1ppg3mq5wtzyts546y6ja8vew5rf5sr2ewu0hkn242etf4857ejvqsz5w025",
+   "blocks": 173,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p6zlfjh9va85qlzjpnhle45wx5h3f094e6w6xrawppuwjump56y9skhdn6r",
+   "blocks": 172,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p8spyf2kds7kkzyclu607ynuk0tdp2f45ntarqa43jj9ngvnfnv6s77x8y4",
+   "blocks": 164,
+   "addresses": 2,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pyyfr65erw730rjztyrq8wkqn7xypn8fswml7n0jadn63cfcwrcmshtw5lw",
+   "blocks": 163,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pdmn4p4z2e8p48x8y2wvwqrlj6gtq0wu686qznqjacacnpuz6ctts9eujqm",
+   "blocks": 162,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p0w0ptnvmkjw5rfu4ufs66rfgtfdeu2mdnjmd0ycyzhnl6v7kzwkswjcjmq",
+   "blocks": 152,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pthv2k3d0x9mfuxqjedjfkzs9ax87psgkhg8hjr4r7pjm36s583mqjflee6",
+   "blocks": 146,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1ps2up8zxd32ynd8huadchr4khntgc2xllcyje90dap0wktm07vr5qf7ns5u",
+   "blocks": 145,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p7j2z6uhvjsx54kj9l2errl4t743lgfffxzetx4g7f0yqklkeyrpq9vdszq",
+   "blocks": 140,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pfjsp3zd7283r3zdv74z7vl0enk22sxd7auglez8l9aqfn2g8kyusgkrdse",
+   "blocks": 138,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pm02ljhfd7mdh9kphu49elfwxsfdcq5g27zq64pguyl59puudf55s0d4hu5",
+   "blocks": 137,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pypjwg0yzlvyp7gwyfr09dmsrp0gzkk50fltqe54ryzqz75rud0vq88f8ks",
+   "blocks": 130,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pz0hl5q22pd0g4sgyhvfhtr79ptmv460r7xuw8r6wf478a3r0907qk65tvq",
+   "blocks": 122,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p0ne0krl2wghxk33dt3rq2w5msshl3ncqlpg2n09alpf64avdrhuscrtmc4",
+   "blocks": 119,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pgzg89yesctek9lp5tdacx7hgg3jpuupnvqyunyt5p7g2myr6ulhs4pyy3t",
+   "blocks": 115,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1prsmhnjnphz4ll4v9lhg8nhr0tv3v7g8sl6qkuyqmnwkq7rhs9c2qqak0rr",
+   "blocks": 109,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pdfhfmaek4jnyt3hspmtw09pe35f0lle9usfjskmn9dxultug69kq47pwku",
+   "blocks": 106,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p97sffsuxmrjgfgt2j4lltgykp0xt2luh75n9vc9eeamda8vtur6qzyxymv",
+   "blocks": 103,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pdgrq5dqwhyj60hv7kqnv9ksfr5anzwn6mur9lswl8xkx3k3yh44s2yt45p",
+   "blocks": 100,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1ppjnwfvechwn70d2asvrc89nff3awldmy5rndu45xrhnhgqy0yhpq0t276n",
+   "blocks": 100,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pgr2znrzz8nwu2lrw4phrzaqqa8ukt76qsqc29wxgcwgalanur7zsk8w070",
+   "blocks": 99,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pj24u78680c829c3g5vl4qu7me26mv9tf726m4rm0l3qtnvslqvqqqnesel",
+   "blocks": 99,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pyzq2r36wqrq40a639vq3wsqnl9z3x93y88lucukxgy0m4jgqntus2x8jwm",
+   "blocks": 99,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pk9f5tvfjvqaztge36nf5wtcxrjs5esxx3exhy6fszec4xtpfmzzq73fh35",
+   "blocks": 98,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pmhn3cg3prvwyz6mmfjl4yupy7dyu7tjhx7pve7ucqvdpm69lnmkq9al2y0",
+   "blocks": 97,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1ppdx75q2ahvthpaqn09ftk9t9dss62wmwz8uw36av7zaza727yv4q85hkuz",
+   "blocks": 97,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p9u5wp9kwk2jrf7dsnadfcf77fkx9yf36dupmhg5z5w4vurvjru7s9elg0c",
+   "blocks": 95,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pcsuaud07nwg4plu56evrt3ehwtys3fhllcznjjs7jsj77tpnfevsmagh7x",
+   "blocks": 94,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p9aj4t70kmy2nj7sq6f7pxwjtts7hstqd9yhnj37d2w4hh29ppt4q65pvxr",
+   "blocks": 93,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pcsrhyvflfl2luamgffhce3kyr6gmcg2nswzv98y2z2cpr57404wqyeh3lh",
+   "blocks": 93,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pf8tcyc387kxjkzxvm9zr0lesu4fn5apu64v74qw3mrz00935g0lqckn08g",
+   "blocks": 93,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1ptnepdxxafvkjptu943kgcpr07u4n8jadr7erj06q3h52zq54nj2skfkd9y",
+   "blocks": 93,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1ptsqlaay5uhu8h8qlf9q0r0wvqparaavf5s2e78gmerz4g2yf9k9q7v7fqd",
+   "blocks": 93,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p44u7jkd7wq3tdgyf2j2t0xqe8q8h2lv5f9wmchcy5ylrhpglwhyscgj3rx",
+   "blocks": 92,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p4qsvedepl0etyea4jvjqj0zetm9cy00q7dc7e9jywuqy353ena5smc6fm3",
+   "blocks": 92,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pc4z2d3kk93sfqanp2vurmr3slljkzrjjkmjhpcu5vtngfa7d4y6snlexmk",
+   "blocks": 92,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pw6dmf3yjerhxq724tjyhksc4vutuhm353hqhfhxeurdm4aqvkuzqgt0w65",
+   "blocks": 92,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p305yfjwrn3y4365mdgzqgru02gdwxu7x6nl3xr0jnsj3zp3gzfsq9seh32",
+   "blocks": 91,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p5d4uqry3hw2rl6z63l7hpsshwyk069xf45jftfr072hqr7j3pvqqmgf8js",
+   "blocks": 91,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pmfqusv4vrjxhyzl73x2w5z5acyxua7p9vvn79ane0adfnla8vm3qn05q9v",
+   "blocks": 91,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1psx9jg728ypljg402vx74tj7gnsyr7txdxscq6uqnrtn04kwna0vsqgxt8e",
+   "blocks": 91,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pxz6na6vys87fvkx6avhq4zdt85sf2hl465a5d5p6qwhrevrpndzsvfzu8t",
+   "blocks": 91,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pvrdsmz9fptz5f50l9q5rkrjpvxfsduq6ks4e60x6cxje0lh9sz4qk7pz7l",
+   "blocks": 90,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p4540y4mld9yurreexer9e69wn0drgcpavydgqzgmsp5qvd92gt9s8gc3rj",
+   "blocks": 88,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pc6vqrf7l3k5m0d8ulqmgl95nlhg2wsk0cwrlg56ww5h58tx08z4qe6q0sl",
+   "blocks": 88,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pppdctr77pjacukfm3g6cr0xruk9tyj7lmt5pckrwa5nsy0erpx0qfrd4mz",
+   "blocks": 88,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p5edy209ka76rmuyzlk23mrx4m6vzjxcu05vp4fjjfl878zw3pljql4r4lq",
+   "blocks": 87,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1ptag984m88770u9p6w4nu068gp2887tm7zzq5gte3frz3napd8nvsrsgcsj",
+   "blocks": 87,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pwszvkuwyfpd04q7t7lmz6s5fanqk9m55qk5m7h0pqzunq7wwzd3qm0a69x",
+   "blocks": 87,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p5a3xycraczcaz76h2uv0j3px7f4khxkespx9pk62un3valwxhm5qs0lyk0",
+   "blocks": 86,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pfglt8nczqkt344p5y2flu7r6x3fst44u98m33wgaytm333uey4fql4t5k5",
+   "blocks": 86,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pe2vypgr3lxe4hrxh6qywxlwfsg26azd5wl3a862hv3l0zgxywu6qhrfnvs",
+   "blocks": 85,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pkfp07psy3a3haf79z3xttfzlpksul5pwc08k9n885rsrzn763e7ss6gkln",
+   "blocks": 85,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pmffc0d890z5gg9d6n5fhm9292nu90ycfvncfk68lnt0w98fmshusukzc0l",
+   "blocks": 85,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p2nlcavdnzq4sl9gh6q92tu7neznz2df4cux5f68umkpapkd3ha4qlknklv",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p3a8dn2hucnyrmc0g88frgfg99pgvmwv3tydl6emjsgc5esvl5wmqv2657x",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p480qftj7fsjhks68gf5uvqygwe9cz6uc76sr647hkyndq96s7smqsljzkv",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1passwe3hwf4pv2kpsqe6hwrrwd6j3d8m87t83ftfx4lfusza0uxqs9w7xwk",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1phx6wh0snkz7j4zwelpejuh2xuqpm0fak40f3a2yda7q4exkh67wsw28cdl",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pk29tlctx239kg8q3j9xcnrtuktzlrvdk5ar62q8zykfvm9guaqrq8dg3j8",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pmqhd0mlrds5k9nj5r3znnrfmfv24l38q7ts2knpra9u4nq56kszq9p4tg2",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1pmyj4dvv8x930h6fval0ljmuudz7twp5lu9r83jumg6xv5selt2wqqcy0g3",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1py3jne46dr0hzc40etf338k0u5qknuqd27ffmn4fyzsrgkl4999yqrkru64",
+   "blocks": 84,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1psg74femld6wqfejkscy8tz8q3n8zwzcqa356vfm0wqth6mgaad5quvt2pr",
+   "blocks": 83,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  },
+  {
+   "representativeAddress": "prl1p5jksegejz6s47a9r4zle2ng3juacaev3hdhld9t0p37r4rec9ktswnuhpe",
+   "blocks": 82,
+   "addresses": 1,
+   "pools": [],
+   "attributedBlocks": 0
+  }
+ ]
+}

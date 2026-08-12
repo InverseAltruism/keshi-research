@@ -1,0 +1,1948 @@
+openapi: 3.1.0
+
+info:
+  title: Keshi API
+  version: "0.1.0"
+  summary: Independent explorer and analytics API for Pearl Network (PRL).
+  description: |
+    Keshi indexes Pearl Network from its own `pearld` node and serves the result
+    here. Three rules govern every response:
+
+    **1. Money is always a string, always in grains.**
+    One PRL is 1e8 grains and the supply cap is 2.1e17 grains, which exceeds
+    2^53. A JSON number would silently lose precision in any JavaScript client,
+    so every monetary field is a decimal string of grains and is named with a
+    `Grains` suffix. Formatting to PRL is a presentation concern.
+
+    **2. Every analytic payload carries its provenance.**
+    Objects that contain derived numbers include a `meta` object with `source`,
+    `computedAt` and `formulaRef`. `formulaRef` is an anchor into
+    `docs/metrics.md`; if a metric has no entry there, it does not ship.
+
+    **3. Partial data is flagged, never an error.**
+    While the collector backfills, windows may not be fully covered. Those
+    responses return 200 with `partial: true` rather than failing.
+
+    ### Language policy
+
+    Work-rate figures are labelled "PoUW work rate" and are measured in matmul
+    attempts per second. Pearl's proof-of-useful-work accepts any matrices that
+    satisfy the consensus predicate, so nothing on-chain proves that a given
+    block's work served a real AI workload. Keshi never calls this "AI compute".
+    See `docs/metrics.md` for the full policy.
+
+    ### Byte order
+
+    Block hashes, transaction ids and proof commitments are rendered in display
+    (big-endian) order, matching every Pearl explorer and `pearld` itself. The
+    database stores them in internal order; conversion happens at this boundary.
+
+  license:
+    name: MIT
+    identifier: MIT
+
+servers:
+  - url: http://127.0.0.1:8081
+    description: Local instance (KESHI_API_ADDR)
+
+tags:
+  - name: health
+    description: Liveness and service state.
+  - name: chain
+    description: Blocks, transactions and addresses.
+  - name: analytics
+    description: Derived metrics; every payload references docs/metrics.md.
+  - name: live
+    description: Streaming updates.
+
+paths:
+  /healthz:
+    get:
+      tags: [health]
+      summary: Liveness probe
+      description: Returns 200 when the process is up and the database answers a ping.
+      responses:
+        "200":
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, version]
+                properties:
+                  status: { type: string, const: ok }
+                  version: { type: string, examples: ["0.1.0"] }
+        "503":
+          description: The database is unreachable.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+  /metrics:
+    get:
+      tags: [health]
+      summary: Prometheus metrics
+      description: |
+        Prometheus exposition format. Includes `keshi_db_tip_height`,
+        `keshi_ingest_lag_blocks`, `keshi_http_requests_total`,
+        `keshi_sse_clients` and the standard Go/process collectors.
+      responses:
+        "200":
+          description: Metrics in Prometheus text format.
+          content:
+            text/plain:
+              schema: { type: string }
+
+  /v1/status:
+    get:
+      tags: [health]
+      summary: Node, index and Blockbook state
+      description: |
+        The API has no direct node RPC: the node height is read from our own
+        Blockbook's backend report. A Blockbook outage is reported in
+        `blockbook.error` and does not fail the request.
+      responses:
+        "200":
+          description: Current service state.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Status" }
+
+  /v1/summary:
+    get:
+      tags: [analytics]
+      summary: Dashboard summary cards
+      description: |
+        Everything the dashboard shows above the fold. Market data is kept in
+        its own `market` object and is never merged into chain metrics: the
+        exchange-reported circulating supply differs from on-chain issuance by
+        several percent for reasons nobody has explained.
+      responses:
+        "200":
+          description: |
+            Summary. Returned with `meta.partial: true` on an empty or
+            still-backfilling index rather than an error.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Summary" }
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /v1/blocks:
+    get:
+      tags: [chain]
+      summary: List canonical blocks, newest first
+      parameters:
+        - name: limit
+          in: query
+          description: Number of blocks to return.
+          schema: { type: integer, minimum: 1, maximum: 200, default: 25 }
+        - name: before
+          in: query
+          description: Return blocks strictly below this height (backwards pagination).
+          schema: { type: integer, minimum: 0 }
+      responses:
+        "200":
+          description: A page of blocks.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [blocks, nextBefore]
+                properties:
+                  blocks:
+                    type: array
+                    items: { $ref: "#/components/schemas/Block" }
+                  nextBefore:
+                    description: Pass as `before` for the next page; null on the last page.
+                    type: [integer, "null"]
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/blocks/{heightOrHash}:
+    get:
+      tags: [chain]
+      summary: Get one block
+      description: |
+        Accepts a height (canonical block at that height) or a 64-character
+        block hash in display order. Reorged blocks remain retrievable by hash
+        with `canonical: false`, and `block.siblings` lists every other block
+        retained at the same height, so both sides of a fork link to each
+        other. Detail responses also carry `certificate.params` (the decoded
+        public data, once the corpus row exists) and
+        `certificate.classification` (the frozen PREREG-001 shape
+        classification computed from it).
+      parameters:
+        - name: heightOrHash
+          in: path
+          required: true
+          schema: { type: string }
+          examples:
+            height: { value: "94748" }
+            hash: { value: "14bc1d2b7db907cb69e0d419b61c765aee0a378d68823274d5bb136423948db8" }
+      responses:
+        "200":
+          description: The block and its transaction ids.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [block, txids]
+                properties:
+                  block: { $ref: "#/components/schemas/Block" }
+                  txids:
+                    type: array
+                    items: { $ref: "#/components/schemas/Hash" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /v1/reorgs:
+    get:
+      tags: [chain]
+      summary: Observed reorgs, newest first
+      description: |
+        The `reorg_events` table on the wire: every chain switch our node
+        recorded, newest first. These are node-local observations; an absent
+        event is absence of observation, not proof that no fork existed
+        (same caveat as `block.siblings`). `oldTip` and `newTip` resolve at
+        `/v1/blocks/{hash}`; the losing (old) tip is retained as a
+        non-canonical block, never deleted. An empty list is a valid 200.
+      parameters:
+        - name: limit
+          in: query
+          description: |
+            Number of events to return, counted over recorded reorg events
+            (not blocks). Values above 100 are rejected with 400.
+          schema: { type: integer, minimum: 1, maximum: 100, default: 25 }
+      responses:
+        "200":
+          description: Observed reorg events with provenance.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [meta, reorgs, linkBasis]
+                properties:
+                  meta: { $ref: "#/components/schemas/Meta" }
+                  reorgs:
+                    type: array
+                    items: { $ref: "#/components/schemas/Reorg" }
+                  linkBasis:
+                    type: string
+                    description: How a UI resolves each tip hash to a block.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /v1/txs/{txid}:
+    get:
+      tags: [chain]
+      summary: Get one confirmed transaction
+      description: |
+        Served from Keshi's own index. Mempool transactions are not available
+        here. Input values are attached when the funding output has been
+        indexed; otherwise `unresolved` is true and `valueGrains` is null.
+      parameters:
+        - name: txid
+          in: path
+          required: true
+          schema: { $ref: "#/components/schemas/Hash" }
+      responses:
+        "200":
+          description: The transaction with resolved inputs and outputs.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Transaction" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /v1/addresses/{addr}:
+    get:
+      tags: [chain]
+      summary: Address summary (proxied to Blockbook)
+      description: |
+        Keshi does not yet maintain its own address index, so this proxies
+        `GET /api/v2/address/{addr}?details=basic` on our Blockbook and attaches
+        the pool label when the address is a known mining wallet. The Blockbook
+        payload is passed through verbatim; its amounts are decimal strings in
+        grains.
+
+        Addresses are validated by bech32m checksum, not by prefix.
+      parameters:
+        - name: addr
+          in: path
+          required: true
+          schema: { $ref: "#/components/schemas/Address" }
+      responses:
+        "200":
+          description: Address summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [address, source, blockbook]
+                properties:
+                  address: { $ref: "#/components/schemas/Address" }
+                  source: { type: string, const: blockbook }
+                  blockbook:
+                    type: object
+                    description: Verbatim Blockbook `details=basic` payload.
+                    additionalProperties: true
+                  pool: { $ref: "#/components/schemas/PoolLabel" }
+                  note: { type: string }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "502":
+          description: Blockbook is unreachable.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+  /v1/metrics/{series}:
+    get:
+      tags: [analytics]
+      summary: A chain metric series
+      description: |
+        Point values are strings so that grain amounts never pass through a
+        float. Interpret them using the `unit` field. Points are oldest-first.
+
+        For `work-rate` an additional `aggregate` object carries the windowed
+        figure `Σwork / (t_end − t_start)`, which is the headline number;
+        the per-point values are the instantaneous per-block rate.
+
+        The certificate-arithmetic series (`rank`, `declared-arithmetic`,
+        `proven-arithmetic`, `attestation-ratio`) are computed from the decoded
+        certificate corpus over canonical blocks at the current decoder
+        version; the three arithmetic series carry their own `aggregate`
+        (sums, MAC-weighted ratio, macsPerSecond). Definitions and binding
+        language rules: docs/metrics.md "Certificate arithmetic".
+      parameters:
+        - name: series
+          in: path
+          required: true
+          schema: { $ref: "#/components/schemas/SeriesName" }
+        - name: window
+          in: query
+          schema: { $ref: "#/components/schemas/Window" }
+      responses:
+        "200":
+          description: |
+            The series. During backfill this returns `partial: true` with
+            whatever data exists, never an error.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MetricSeries" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /v1/metrics/concentration-series:
+    get:
+      tags: [analytics]
+      summary: Height-binned mining concentration series
+      description: |
+        Concentration over time, binned by height over canonical blocks.
+        Entities are coinbase miner addresses, not pool labels. Each bin
+        reports largest-1/3/5 shares, effective operators (inverse HHI) and
+        the Nakamoto coefficient on two bases: attributed-only (blocks with
+        a decodable coinbase address) and all-blocks. The unattributed
+        fraction is always present and never redistributed. Undefined
+        measures are null, never 0. Definitions and caveats:
+        docs/metrics.md#concentration-series.
+      parameters:
+        - name: bin
+          in: query
+          schema:
+            type: integer
+            minimum: 100
+            maximum: 10000
+            default: 1000
+          description: Blocks per bin. The newest 200 bins are returned, oldest first.
+      responses:
+        "200":
+          description: The series; `meta.partial` is true when the index holds no bins.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ConcentrationSeries" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/metrics/profit-per-work:
+    get:
+      tags: [analytics]
+      summary: Revenue per unit of consensus work
+      description: |
+        Gross protocol revenue per unit of consensus work over a window:
+        `Σ(subsidy + fees) / Σ work`, work summed in NUMERIC with the
+        work-rate accounting. Not miner profit: hardware, power and payout
+        policy are off-chain. Fee drag is estimated from pool-advertised
+        fees over the labeled-with-fee subset of blocks, with that subset's
+        size and coinbase sum stated, and is reported unavailable when the
+        window has no such block. Definitions:
+        docs/metrics.md#profit-per-work.
+      parameters:
+        - name: window
+          in: query
+          schema:
+            type: string
+            enum: ["24h", "7d", "30d"]
+            default: "24h"
+      responses:
+        "200":
+          description: The windowed aggregate; partial during backfill, never an error.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ProfitPerWork" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/certs/census:
+    get:
+      tags: [analytics]
+      summary: Certificate corpus census
+      description: |
+        Distributions over the decoded certificate corpus: rank histogram,
+        top-20 declared shapes, MoE count and a per-pool rank crosstab.
+        Canonical blocks only, current decoder version only. Default window is
+        `all`, since a census is naturally corpus-wide. The unattributed remainder
+        is always shown and never redistributed. Height-bounded slices (e.g.
+        the MoE fork window 71,935–91,630) are not expressible via `window`;
+        research queries against the corpus table remain the tool for those.
+      parameters:
+        - name: window
+          in: query
+          schema: { $ref: "#/components/schemas/Window" }
+      responses:
+        "200":
+          description: The census; `meta.partial` is true when the window holds no parsed blocks.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CertCensus" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/certs/search:
+    get:
+      tags: [analytics]
+      summary: Cert-aware block search
+      description: |
+        Canonical blocks filtered by decoded certificate parameters, over
+        cert_public_params joined to canonical blocks at the current decoder
+        version (docs/metrics.md#cert-search). Filters are optional, exact and
+        AND together; results page newest first with the same keyset cursor as
+        /v1/blocks. Each row's shapeClass is the frozen PREREG-001 class,
+        computed at serve time by the same internal/certclass function the
+        block detail endpoint serves, so the search and the block page always
+        agree; the coarse blocks.cert_class wire taxonomy (dense/moe/none/
+        unknown) plays no part. Binding language (PREREG-001 section 0): every
+        class is a statement of shape CONSISTENCY with the published mining
+        stack and frozen model tables, never proof; no class or filter result
+        shows that real inference occurred or that the declared matmul ran.
+      parameters:
+        - name: shapeClass
+          in: query
+          description: Frozen PREREG-001 shape class; any other value is a 400.
+          schema:
+            type: string
+            enum:
+              [EMPTY, OFFICIAL_CONSISTENT, OFFICIAL_PATTERN_NONMODEL,
+               MODEL_SHAPED_CUSTOM, CUSTOM]
+        - name: rank
+          in: query
+          description: Exact declared noise rank.
+          schema: { type: integer, minimum: 0 }
+        - name: m
+          in: query
+          description: Exact declared rows of A.
+          schema: { type: integer, minimum: 0 }
+        - name: moe
+          in: query
+          description: |
+            true selects declared-MoE certificates (moe_e > 0); false selects
+            dense declarations (moe_e = 0).
+          schema: { type: boolean }
+        - name: limit
+          in: query
+          description: Number of blocks to return.
+          schema: { type: integer, minimum: 1, maximum: 200, default: 25 }
+        - name: before
+          in: query
+          description: Return blocks strictly below this height (backwards pagination).
+          schema: { type: integer, minimum: 0 }
+      responses:
+        "200":
+          description: |
+            A page of matching blocks, newest first. An empty match is a
+            valid 200 with an empty array, never an error.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [meta, filters, matchedBlocks, basis, blocks, nextBefore]
+                properties:
+                  meta: { $ref: "#/components/schemas/Meta" }
+                  filters:
+                    type: object
+                    description: The applied filters; an unused filter is an explicit null.
+                    required: [shapeClass, rank, m, moe]
+                    properties:
+                      shapeClass: { type: ["string", "null"] }
+                      rank: { type: ["integer", "null"] }
+                      m: { type: ["integer", "null"] }
+                      moe: { type: ["boolean", "null"] }
+                  matchedBlocks:
+                    type: integer
+                    description: |
+                      Exact count of canonical blocks with a decoded
+                      certificate at the current decoder version satisfying
+                      every applied filter (unit: blocks), computed in the
+                      same snapshot as the page.
+                  basis:
+                    type: string
+                    description: States the matchedBlocks denominator and unit.
+                  blocks:
+                    type: array
+                    items: { $ref: "#/components/schemas/CertSearchMatch" }
+                  nextBefore:
+                    description: Pass as `before` for the next page; null on the last page.
+                    type: [integer, "null"]
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /v1/emission:
+    get:
+      tags: [analytics]
+      summary: Emission curve, observed issuance and milestones
+      description: |
+        Pearl has no halvings: the subsidy decays smoothly as
+        `Reward(t) = floor(S·H/((t+H)(t+H−1)))` with S = 2.1e17 grains and
+        H = 650,226 blocks. Cumulative issuance follows
+        `Emitted(t) = floor(S·t/(t+H))`.
+
+        Observed issuance is the sum of coinbase outputs over canonical blocks.
+        Note that on Pearl a coinbase output pays subsidy **plus** the block's
+        transaction fees, so observed issuance runs slightly above the
+        theoretical curve.
+
+        Milestone dates are projections computed from the current windowed
+        block interval and are labelled as such; they move with hashrate.
+      responses:
+        "200":
+          description: Emission state.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Emission" }
+
+  /v1/pools:
+    get:
+      tags: [analytics]
+      summary: Mining pool attribution and concentration
+      description: |
+        Attribution is by coinbase output address against the `pool_labels`
+        table. Blocks whose address has no label are reported as a single
+        `unattributed` row and are never hidden or redistributed.
+
+        Concentration measures (top-1/3/5, inverse-HHI effective pool count and
+        the Nakamoto coefficient) are computed over **attributed blocks only**.
+        With a large unattributed remainder the Nakamoto coefficient is a lower
+        bound, which the response states explicitly.
+
+        Label confidence is `verified` (block-producing wallet cross-validated
+        against two independent explorers), `announced` (self-declared, no
+        blocks found) or `heuristic` (clustering; not in v0.1).
+      parameters:
+        - name: window
+          in: query
+          schema:
+            type: string
+            enum: ["24h", "7d", "30d"]
+            default: "24h"
+      responses:
+        "200":
+          description: Pool shares and concentration.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Pools" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/pools/directory:
+    get:
+      tags: [analytics]
+      summary: Every known pool label with metadata and all-time block count
+      description: |
+        Every row of the `pool_labels` table, whether or not the pool mined
+        recently, so a directory can render the full label set rather than
+        only pools active in a window.
+
+        `name`, `source` and `feePct` are label metadata: manually seeded,
+        self-declared or explorer-cross-validated per `confidence`, never
+        verified on chain. `feePct` is null when no advertised fee is on
+        record; null is never rendered as 0, because a declared 0% fee is a
+        real value and an unknown fee is not.
+
+        `blocks` counts canonical blocks whose coinbase output address
+        equals the label's address, the same matching `/v1/pools` uses. Its
+        denominator is `snapshot.totalBlocks`, all canonical blocks at
+        heights 0..tip, and `snapshot.tipHeight`/`tipHash` name the tip it
+        was counted against; tip, denominator and counts are read inside one
+        repeatable-read snapshot. The unit is blocks per label address:
+        labels are addresses, not entities, and one operator can span
+        several labels.
+
+        No payout-scheme field is served. `pool_labels` has no scheme
+        column; serving one requires a migration adding a self-declared
+        `payout_scheme` column, and until then the field is absent rather
+        than fabricated.
+
+        Sorted by block count descending, then name, then address.
+      responses:
+        "200":
+          description: The full label set; `meta.partial` is true on an empty index.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PoolDirectory" }
+
+  /v1/pools/{name}/cert-profile:
+    get:
+      tags: [analytics]
+      summary: Per-pool certificate-geometry profile
+      description: |
+        One labeled pool's certificate-geometry census over its canonical
+        blocks at heights 0..tip at the current decoder version
+        (docs/metrics.md#pool-cert-profile), computed in one repeatable-read
+        snapshot: the PREREG-001 shape-class census with the model-consistent
+        share, the rank histogram with the boundary-hugging share (rank-128
+        blocks at exactly the legal-minimum k = 2048; roadmap 14.3), the
+        (tileH, tileW, rank, officialBytes) tile-signature census with the
+        official-bytes share (roadmap 14.4), and the declared-MoE share.
+
+        The pool is a label NAME: several pool_labels addresses can carry one
+        name and the profile aggregates all of them, the same matching
+        /v1/pools uses. Labels are addresses, not entities. Shape classes are
+        computed by the same internal/certclass function the block detail
+        endpoint and /v1/certs/search serve, so the surfaces always agree.
+
+        Binding language (PREREG-001 section 0, Phase 14): every figure
+        states consistency of declared certificate geometry with the
+        published mining stack and frozen model tables, never proof that
+        real inference occurred or that a declared matmul ran; configuration
+        is reported as measurement, not judgement. Every share carries its
+        exact numerator, denominator and basis; an empty denominator yields
+        null, never 0. The per-pool operational-hygiene block (empty-block
+        rate, template staleness) is gated on right of reply (roadmap 9.4 /
+        14.5) and is out of scope here, which the response states.
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: |
+            URL-encoded pool label, matched against pool_labels.pool_name
+            exactly. The label set is served by /v1/pools/directory.
+          schema: { type: string }
+      responses:
+        "200":
+          description: |
+            The pool's profile. A labeled pool with no blocks is a valid 200
+            with zero counts and null shares, never an error.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PoolCertProfile" }
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /v1/markets:
+    get:
+      tags: [analytics]
+      summary: Latest market tick per source
+      description: |
+        Market data is collected on its own schedule by an isolated goroutine;
+        a data-provider outage never affects chain data. Prices are decimal
+        strings for the same reason grain amounts are.
+      responses:
+        "200":
+          description: Latest ticks.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Markets" }
+
+  /v1/search:
+    get:
+      tags: [chain]
+      summary: Resolve a free-text query to a resource
+      description: |
+        Dispatch order:
+
+        1. a non-negative integer resolves as a block height;
+        2. 64 hex characters are tried as a block hash, then as a txid;
+        3. a bech32m-valid string resolves as an address.
+
+        Anything else returns 404 with a hint. The endpoint never guesses.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: The resolved resource.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SearchResult" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /v1/stream:
+    get:
+      tags: [live]
+      summary: Server-sent event stream of chain events
+      description: |
+        A `text/event-stream` response that stays open. The collector publishes
+        on a Postgres `NOTIFY` channel after each committed block or reorg and
+        the API relays it here.
+
+        Named events are `block` and `reorg`; the `data` line is the JSON
+        payload. A comment line (`: heartbeat …`) is emitted every 15 seconds so
+        proxies do not time the connection out. The stream is exempt from the
+        30-second request timeout applied to every other route.
+
+        This endpoint is a latency convenience. Clients must be able to recover
+        their state from the REST endpoints: events for a slow consumer are
+        dropped rather than buffered indefinitely.
+
+        Example frames:
+
+        ```
+        retry: 15000
+
+        : connected at 2026-08-02T20:00:00Z
+
+        event: block
+        data: {"type":"block","height":94748,"hash":"14bc1d2b…"}
+
+        : heartbeat 2026-08-02T20:00:15Z
+        ```
+      responses:
+        "200":
+          description: The event stream.
+          headers:
+            Cache-Control:
+              schema: { type: string, const: "no-cache, no-transform" }
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: SSE frames.
+        "503":
+          description: The stream is not configured on this instance.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+components:
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    NotFound:
+      description: No such resource.
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    InternalError:
+      description: An unexpected server error.
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              description: Stable machine-readable code.
+              examples: ["not_found", "bad_request", "internal", "blockbook_unavailable"]
+            message: { type: string }
+            hint:
+              type: string
+              description: What the caller could do instead.
+
+    Grains:
+      type: string
+      pattern: "^-?[0-9]+$"
+      description: |
+        A monetary amount in grains (1 PRL = 1e8 grains) as a decimal string.
+        Never parse into a JavaScript number: the supply cap of 2.1e17 grains
+        exceeds 2^53.
+      examples: ["246038867050"]
+
+    Decimal:
+      type: [string, "null"]
+      description: An exact decimal value as a string (used for prices and 256-bit work sums).
+      examples: ["0.04310000"]
+
+    Hash:
+      type: string
+      pattern: "^[0-9a-f]{64}$"
+      description: A 32-byte hash in display (big-endian) hex order.
+      examples: ["14bc1d2b7db907cb69e0d419b61c765aee0a378d68823274d5bb136423948db8"]
+
+    Address:
+      type: string
+      description: |
+        A Pearl address. Pearl is taproot-only: mainnet addresses are bech32m
+        with the `prl` HRP and a witness-v1 32-byte program. Validate by
+        checksum, not by prefix.
+      examples: ["prl1pl7ch5q7f225sumuutpw9u466auzellprh432z4vd9pfzvnfqmysq2f3xjw"]
+
+    Window:
+      type: string
+      enum: ["50", "200", "1000", "24h", "7d", "30d", "all"]
+      default: "200"
+      description: |
+        Analytics window: a block count or a time span. The window is a
+        first-class, user-visible parameter because it drives most of the
+        divergence between explorers' published work-rate figures (up to 26%
+        for the same chain state). No other values are accepted.
+
+    SeriesName:
+      type: string
+      enum: ["work-rate", "difficulty", "block-interval", "tx-count", "fees", "issuance",
+             "rank", "declared-arithmetic", "proven-arithmetic", "attestation-ratio"]
+      description: |
+        The last four are certificate-arithmetic series decoded from the
+        corpus (docs/metrics.md "Certificate arithmetic"): declared values are
+        what the miner CLAIMS was multiplied; proven values are what the ZK
+        proof covers (at most tileSize <= 256 output entries per block).
+        Never present declared quantities as proven or as AI work performed.
+
+    Meta:
+      type: object
+      required: [source, computedAt, formulaRef]
+      properties:
+        source:
+          type: string
+          description: Where the numbers came from.
+          examples: ["keshi index (our pearld node)"]
+        computedAt: { type: string, format: date-time }
+        formulaRef:
+          type: string
+          description: Anchor into docs/metrics.md defining this metric.
+          examples: ["docs/metrics.md#work-rate"]
+        partial:
+          type: boolean
+          description: The window is not fully covered by indexed data.
+        caveat:
+          type: string
+          description: The interpretation warning attached to this metric.
+
+    Certificate:
+      type: object
+      description: |
+        Summary of the block's proof certificate. Pearl versions certificates
+        rather than embedding a nonce; `class` is `dense`, `moe`, `none` or
+        `unknown`. An unknown version is recorded and alerted on, never skipped.
+      required: [version, size, class]
+      properties:
+        version: { type: integer, examples: [1, 2] }
+        size:
+          type: integer
+          description: Serialized size in bytes including the 4-byte version prefix (consensus cap 65000).
+        class:
+          type: string
+          enum: [dense, moe, none, unknown]
+        params:
+          oneOf:
+            - { $ref: "#/components/schemas/CertParams" }
+            - { type: "null" }
+          description: |
+            Decoded certificate public data. Block DETAIL responses only, and
+            only once the corpus row exists (see /v1/status certParams for
+            coverage); absent otherwise.
+        classification:
+          oneOf:
+            - { $ref: "#/components/schemas/CertClassification" }
+            - { type: "null" }
+          description: |
+            The frozen PREREG-001 shape classification, computed from `params`
+            at serve time by the same pure function the research datasets use.
+            Present exactly when `params` is.
+
+    CertClassification:
+      type: object
+      description: |
+        PREREG-001 classification of the declared certificate shape against
+        the published Pearl mining stack (T1, byte-exact) and the frozen
+        published-model layer tables (T2, geometry). Binding language
+        (PREREG-001 section 0): every class is a statement of shape
+        CONSISTENCY. A T1 failure proves the block was not produced by the
+        unmodified published stack; no class proves inference occurred or
+        that the declared matmul ran.
+      required: [class, era, t1Pass, t2Pass]
+      properties:
+        class:
+          type: string
+          enum:
+            [EMPTY, OFFICIAL_CONSISTENT, OFFICIAL_PATTERN_NONMODEL,
+             MODEL_SHAPED_CUSTOM, CUSTOM]
+          description: |
+            The pre-registered class matrix over (T1, T2). EMPTY is the
+            genesis empty certificate only.
+        era:
+          type: string
+          enum: [pre-moe, moe-window, dense-only, rank-penalty, salted-seed]
+          description: |
+            Consensus era of the block's height. PREREG-001 froze the first
+            four strata, which cover the chain to height 98,999; salted-seed
+            (99,000 and above) is a later labelling addition. No
+            classification depends on the era.
+        t1Pass:
+          type: boolean
+          description: Official-stack byte test (rank, both 6-byte patterns, engagement floor).
+        t2Pass:
+          type: boolean
+          description: Layer-geometry test; true iff `matches` is non-empty.
+        matches:
+          type: array
+          items:
+            type: object
+            required: [model, layer, tp, provenance]
+            properties:
+              model: { type: string, examples: ["Llama-3.3-70B"] }
+              layer: { type: string, examples: ["gate_up_fused"] }
+              tp:
+                type: integer
+                description: Tensor-parallel degree of the hypothesis (1, 2, 4 or 8).
+              provenance:
+                type: string
+                enum: [anchored, documented, derived]
+                description: Reliability grade of the layer-table row (PREREG-001 section 4).
+          description: |
+            Every (model, layer, tp) hypothesis the declared (n, k) satisfies.
+            All matches are reported; ambiguity is never resolved.
+
+    CertParams:
+      type: object
+      description: |
+        The decoded public data of a PoUW certificate: the parameters of the
+        matrix multiplication the miner committed into the block ID. Field
+        semantics are documented in docs/pearl-notes.md "Certificate
+        internals". IMPORTANT: `hashA`/`hashB`/`hashJackpot`/`hashRoutingHex`
+        are keyed-BLAKE3 roots rendered as plain hex of the wire bytes. They
+        are NOT block hashes, have no display byte order, and must never be
+        byte-reversed. The declared dimensions (m, n, k) are what the miner
+        CLAIMS was multiplied; the ZK proof covers at most tileSize (<= 256)
+        output entries, never the full declared matmul.
+      required:
+        [k, rank, mmaType, rowsPatternHex, colsPatternHex, tileH, tileW,
+         tileSize, moeE, moeTopK, hashA, hashB, hashJackpot, m, n, tRows,
+         tCols, decoderVersion, parsedAt]
+      properties:
+        k:
+          type: integer
+          description: common_dim, the GEMM contraction dimension.
+          examples: [16384]
+        rank:
+          type: integer
+          description: Noise rank r. The v1.3.0 softfork (height 96251) rejects rank < 128.
+          examples: [1024]
+        mmaType:
+          type: integer
+          description: Always 0 (Int7xInt7ToInt32), the only variant that exists.
+        rowsPatternHex:
+          type: string
+          description: Raw 6-byte tile row pattern, (factor-1, length-1) x 3.
+          examples: ["000f00000000"]
+        colsPatternHex: { type: string }
+        tileH:
+          type: integer
+          description: Product of the row-pattern lengths.
+        tileW: { type: integer }
+        tileSize:
+          type: integer
+          description: tileH * tileW, the number of output entries the proof opens (consensus bounds 32..256).
+        moeE:
+          type: integer
+          description: MoE expert count; 0 means a standard dense job.
+        moeTopK: { type: integer }
+        hashA:
+          type: string
+          description: blake3(A, key=job_key), the activation-matrix commitment, plain wire-order hex.
+        hashB:
+          type: string
+          description: blake3(B^T, key=job_key), the weight-matrix commitment, plain wire-order hex.
+        hashJackpot:
+          type: string
+          description: The difficulty comparison value, plain wire-order hex.
+        m:
+          type: integer
+          description: Declared rows of A.
+          examples: [32768]
+        n:
+          type: integer
+          description: Declared cols of B.
+          examples: [65536]
+        tRows:
+          type: integer
+          description: Winning tile minimum row.
+        tCols: { type: integer }
+        moe:
+          type: object
+          description: The MoE tail; present only for MoE certificates.
+          properties:
+            expertIdx: { type: integer }
+            routingOffsets: { type: array, items: { type: integer } }
+            hashRoutingHex:
+              type: string
+              description: Plain wire-order hex, never byte-reversed.
+            outerIndices: { type: array, items: { type: integer } }
+        decoderVersion:
+          type: integer
+          description: |
+            The decoder that produced this row. The corpus is append-only: a
+            decoder fix ships new rows under a bumped version, never an edit.
+        parsedAt: { type: string, format: date-time }
+
+    CertCensus:
+      type: object
+      description: |
+        Distributions over the decoded certificate corpus in a window.
+        Declared shapes are what miners claim (docs/metrics.md#cert-census);
+        rank 0 is the genesis empty certificate, shown rather than hidden.
+      required: [meta, window, blocks, moeBlocks, rankDistribution, topShapes, poolRanks]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        window: { $ref: "#/components/schemas/Window" }
+        blocks:
+          type: integer
+          description: Parsed canonical blocks in the window.
+        moeBlocks:
+          type: integer
+          description: Blocks whose certificate declares experts (moe_e > 0).
+        rankDistribution:
+          type: array
+          items:
+            type: object
+            required: [rank, blocks]
+            properties:
+              rank: { type: integer }
+              blocks: { type: integer }
+        topShapes:
+          type: array
+          description: Top 20 declared (m, n, k, rank, tile) shapes by block count.
+          items:
+            type: object
+            required: [m, n, k, rank, tileH, tileW, blocks]
+            properties:
+              m: { type: integer }
+              n: { type: integer }
+              k: { type: integer }
+              rank: { type: integer }
+              tileH: { type: integer }
+              tileW: { type: integer }
+              blocks: { type: integer }
+        poolRanks:
+          type: array
+          description: |
+            Per-pool rank crosstab via coinbase-address labels. Blocks whose
+            address has no label appear under pool "unattributed" with
+            attributed=false, never hidden, never redistributed.
+          items:
+            type: object
+            required: [pool, attributed, rank, blocks]
+            properties:
+              pool: { type: string }
+              attributed: { type: boolean }
+              rank: { type: integer }
+              blocks: { type: integer }
+
+    CertSearchMatch:
+      type: object
+      description: |
+        One block matched by /v1/certs/search. Declared parameters are what
+        the miner claims was multiplied (all below 2^48, safe as JSON
+        numbers); shapeClass is the frozen PREREG-001 consistency class,
+        identical to certificate.classification.class on the block detail
+        endpoint for the same block. minerAddress is a coinbase address, not
+        an entity: one operator can span several addresses.
+      required: [height, hash, time, minerAddress, rank, m, n, k, tileSize, moeE, shapeClass]
+      properties:
+        height: { type: integer }
+        hash: { $ref: "#/components/schemas/Hash" }
+        time:
+          type: string
+          format: date-time
+          description: Miner-set header timestamp.
+        minerAddress:
+          type: ["string", "null"]
+          description: Null when the coinbase pays no decodable address.
+        rank: { type: integer }
+        m: { type: integer }
+        n: { type: integer }
+        k: { type: integer }
+        tileSize: { type: integer }
+        moeE:
+          type: integer
+          description: Declared expert count; 0 means a dense declaration.
+        shapeClass:
+          type: string
+          enum:
+            [EMPTY, OFFICIAL_CONSISTENT, OFFICIAL_PATTERN_NONMODEL,
+             MODEL_SHAPED_CUSTOM, CUSTOM]
+
+    PoolLabel:
+      type: object
+      required: [name, confidence]
+      properties:
+        name: { type: string, examples: ["Pearl Fortune"] }
+        confidence:
+          type: string
+          enum: [verified, announced, heuristic]
+        source: { type: string }
+
+    Block:
+      type: object
+      required:
+        [hash, height, prevHash, time, size, vsize, version, bits, difficulty,
+         chainWork, txCount, subsidyGrains, feesGrains, coinbaseValueGrains, canonical]
+      properties:
+        hash: { $ref: "#/components/schemas/Hash" }
+        height: { type: integer }
+        prevHash: { $ref: "#/components/schemas/Hash" }
+        time:
+          type: string
+          format: date-time
+          description: Header timestamp. Miner-set with a ±5 minute tolerance; this is block age, not network latency.
+        receivedAt:
+          type: string
+          format: date-time
+          description: When our collector wrote the block.
+        size:
+          type: integer
+          description: Full serialized size including the certificate and witness data.
+        vsize:
+          type: integer
+          description: |
+            Consensus virtual size: stripped size + ceil(witness/4). The
+            certificate is deliberately excluded (it is proof metadata, not
+            block data), which is why vsize can be far below size on Pearl.
+        strippedSize: { type: integer }
+        sizeNote: { type: string }
+        version: { type: integer }
+        bits:
+          type: string
+          pattern: "^[0-9a-f]{8}$"
+          description: Compact difficulty target.
+          examples: ["1800bf3e"]
+        difficulty: { type: number }
+        chainWork:
+          allOf: [{ $ref: "#/components/schemas/Decimal" }]
+          description: 2^256/(target+1) for this block, as an exact decimal string.
+        txCount: { type: integer }
+        subsidyGrains:
+          allOf: [{ $ref: "#/components/schemas/Grains" }]
+          description: Consensus subsidy for this height, from the emission formula.
+        feesGrains:
+          allOf: [{ $ref: "#/components/schemas/Grains" }]
+          description: |
+            Coinbase value minus subsidy: the fees the miner actually claimed.
+            Miners may under-claim, so this is a lower bound on fees paid.
+        coinbaseValueGrains:
+          allOf: [{ $ref: "#/components/schemas/Grains" }]
+          description: Sum of coinbase outputs. On Pearl this is subsidy + fees.
+        minerAddress:
+          oneOf:
+            - { $ref: "#/components/schemas/Address" }
+            - { type: "null" }
+        proofCommitment:
+          oneOf:
+            - { $ref: "#/components/schemas/Hash" }
+            - { type: "null" }
+        certificate:
+          oneOf:
+            - { $ref: "#/components/schemas/Certificate" }
+            - { type: "null" }
+        pool:
+          oneOf:
+            - { $ref: "#/components/schemas/PoolLabel" }
+            - { type: "null" }
+        canonical:
+          type: boolean
+          description: False for a block that was reorged out. Reorged blocks are kept, not deleted.
+        orphanedAt: { type: [string, "null"], format: date-time }
+        siblings:
+          type: array
+          items: { $ref: "#/components/schemas/BlockSibling" }
+          description: |
+            Fork context: every other block our index retains at this height.
+            Block DETAIL responses only; absent when no competing block was
+            observed, which is absence of observation, not proof that no fork
+            existed.
+
+    BlockSibling:
+      type: object
+      description: |
+        Another block retained at the same height. Reorged blocks are kept
+        with `canonical: false`, never deleted, so the losing side of a fork
+        stays retrievable by hash.
+      required: [hash, canonical, time]
+      properties:
+        hash: { $ref: "#/components/schemas/Hash" }
+        canonical: { type: boolean }
+        time: { type: string, format: date-time }
+        orphanedAt: { type: [string, "null"], format: date-time }
+
+    Reorg:
+      type: object
+      description: |
+        One reorg our node observed: at `at` the collector switched from the
+        chain ending in `oldTip` to the chain ending in `newTip`, orphaning
+        `depth` of our canonical blocks back to the common ancestor at
+        `ancestorHeight`. This is a node-local observation; the list is what
+        our node saw, not an exhaustive record of every fork that existed.
+        Both tips resolve at `/v1/blocks/{hash}`; the old tip is retained
+        with `canonical: false`, never deleted.
+      required: [at, depth, ancestorHeight, oldTip, newTip]
+      properties:
+        at:
+          type: string
+          format: date-time
+          description: When our node recorded the switch.
+        depth:
+          type: integer
+          description: How many of our canonical blocks the switch orphaned.
+        ancestorHeight:
+          type: integer
+          description: |
+            The highest height at which both chains agree. A value of -1 is a
+            total-divergence sentinel: the two chains share no common ancestor
+            in our index.
+        oldTip: { $ref: "#/components/schemas/Hash" }
+        newTip: { $ref: "#/components/schemas/Hash" }
+
+    TxInput:
+      type: object
+      required: [index, sequence, isCoinbase]
+      properties:
+        index: { type: integer }
+        prevTxid:
+          oneOf:
+            - { $ref: "#/components/schemas/Hash" }
+            - { type: "null" }
+        prevVout: { type: [integer, "null"] }
+        sequence: { type: integer }
+        valueGrains:
+          oneOf:
+            - { $ref: "#/components/schemas/Grains" }
+            - { type: "null" }
+        address:
+          oneOf:
+            - { $ref: "#/components/schemas/Address" }
+            - { type: "null" }
+        isCoinbase: { type: boolean }
+        unresolved:
+          type: boolean
+          description: The funding output is not in our index, so no value could be attached.
+
+    TxOutput:
+      type: object
+      required: [vout, valueGrains, scriptHex]
+      properties:
+        vout: { type: integer }
+        valueGrains: { $ref: "#/components/schemas/Grains" }
+        address:
+          oneOf:
+            - { $ref: "#/components/schemas/Address" }
+            - { type: "null" }
+          description: Null for OP_RETURN and nonstandard scripts. This is normal, not an error.
+        scriptClass:
+          type: [string, "null"]
+          examples: ["witness_v1_taproot", "nulldata", "witness_v2_merkleroot", "nonstandard"]
+        scriptHex: { type: string }
+        spentByTxid:
+          oneOf:
+            - { $ref: "#/components/schemas/Hash" }
+            - { type: "null" }
+        spentAtHeight: { type: [integer, "null"] }
+
+    Transaction:
+      type: object
+      required: [txid, blockHash, blockHeight, index, size, vsize, isCoinbase, inputs, outputs]
+      properties:
+        txid: { $ref: "#/components/schemas/Hash" }
+        blockHash: { $ref: "#/components/schemas/Hash" }
+        blockHeight: { type: integer }
+        blockTime: { type: string, format: date-time }
+        index: { type: integer }
+        size: { type: integer }
+        vsize: { type: integer }
+        isCoinbase: { type: boolean }
+        canonical: { type: boolean }
+        feeGrains:
+          oneOf:
+            - { $ref: "#/components/schemas/Grains" }
+            - { type: "null" }
+          description: Null until every input's funding output is indexed. Coinbase fee is 0.
+        outputTotalGrains: { $ref: "#/components/schemas/Grains" }
+        subsidyGrains:
+          $ref: "#/components/schemas/Grains"
+          description: |
+            Coinbase transactions only. The block subsidy at this height. A
+            coinbase output pays subsidy plus the block's fees.
+        blockFeesGrains:
+          $ref: "#/components/schemas/Grains"
+          description: |
+            Coinbase transactions only. The fees the block collected, derived
+            at ingest as coinbase value minus subsidy; it does not wait on
+            prevout resolution.
+        inputs:
+          type: array
+          items: { $ref: "#/components/schemas/TxInput" }
+        outputs:
+          type: array
+          items: { $ref: "#/components/schemas/TxOutput" }
+        feeNote: { type: string }
+
+    Status:
+      type: object
+      required: [service, node, index, backfill, certParams, blockbook, mempool]
+      properties:
+        service:
+          type: object
+          properties:
+            name: { type: string }
+            version: { type: string }
+        node:
+          type: object
+          description: The node's height, read from our Blockbook's backend report.
+          properties:
+            height: { type: [integer, "null"] }
+            source: { type: string }
+            error: { type: string }
+        index:
+          type: object
+          properties:
+            tipHeight: { type: [integer, "null"] }
+            tipHash:
+              oneOf:
+                - { $ref: "#/components/schemas/Hash" }
+                - { type: "null" }
+            tipTime: { type: [string, "null"], format: date-time }
+            blocks: { type: integer }
+            minHeight: { type: integer }
+            maxHeight: { type: integer }
+            empty: { type: boolean }
+        backfill:
+          type: object
+          properties:
+            complete: { type: boolean }
+            ratio: { type: [number, "null"] }
+            missingBlocks: { type: [integer, "null"] }
+        certParams:
+          type: object
+          description: |
+            Phase 6 certificate-corpus coverage. `expected` counts canonical
+            blocks carrying a parseable-version certificate (version 1, 2 or 3);
+            `missingParams` > 0 after a completed `keshictl parse-certs` run
+            means parse failures (alerted separately).
+          properties:
+            expected: { type: integer }
+            parsed: { type: integer }
+            missingParams: { type: integer }
+            complete: { type: boolean }
+            error: { type: string }
+        blockbook:
+          type: object
+          properties:
+            height: { type: [integer, "null"] }
+            inSync: { type: [boolean, "null"] }
+            error: { type: string }
+        mempool:
+          type: object
+          properties:
+            txCount: { type: [integer, "null"] }
+            takenAt: { type: [string, "null"], format: date-time }
+            note:
+              type: string
+              description: Mempools are per-node; other explorers legitimately disagree.
+
+    MarketTick:
+      type: object
+      required: [time, source, pair]
+      properties:
+        time: { type: string, format: date-time }
+        source: { type: string, examples: ["coingecko"] }
+        pair: { type: string, examples: ["PRL/USD"] }
+        priceUsd: { $ref: "#/components/schemas/Decimal" }
+        volumeUsd: { $ref: "#/components/schemas/Decimal" }
+        marketCapUsd: { $ref: "#/components/schemas/Decimal" }
+        circulatingSupply:
+          allOf: [{ $ref: "#/components/schemas/Decimal" }]
+          description: |
+            Exchange-reported circulating supply. This is not Keshi's supply
+            number and differs measurably from on-chain issuance; see
+            /v1/emission.
+
+    Markets:
+      type: object
+      required: [meta, ticks]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        ticks:
+          type: array
+          items: { $ref: "#/components/schemas/MarketTick" }
+        liquidityNote: { type: string }
+        supplyNote: { type: string }
+
+    Summary:
+      type: object
+      required: [meta, chain, work, emission, activity, mempool, market]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        chain:
+          type: object
+          properties:
+            height: { type: [integer, "null"] }
+            tipHash:
+              oneOf:
+                - { $ref: "#/components/schemas/Hash" }
+                - { type: "null" }
+            tipTime: { type: [string, "null"], format: date-time }
+            tipAgeSeconds: { type: [number, "null"] }
+            difficulty: { type: [number, "null"] }
+            bits: { type: [string, "null"] }
+        work:
+          type: object
+          properties:
+            window: { $ref: "#/components/schemas/Window" }
+            ratePerSecond: { type: number }
+            unit: { type: string, const: attempts_per_second }
+            blocks: { type: integer }
+            workSum: { $ref: "#/components/schemas/Decimal" }
+            partial: { type: boolean }
+            formulaRef: { type: string }
+            unitFootnote:
+              type: string
+              description: Required labelling for any work-rate figure.
+        emission:
+          type: object
+          properties:
+            currentSubsidyGrains: { $ref: "#/components/schemas/Grains" }
+            observedIssuanceGrains: { $ref: "#/components/schemas/Grains" }
+            theoreticalIssuanceGrains: { $ref: "#/components/schemas/Grains" }
+            maxSupplyGrains: { $ref: "#/components/schemas/Grains" }
+            formulaRef: { type: string }
+        activity:
+          type: object
+          properties:
+            txCount24h: { type: integer }
+            avgBlockInterval24hSeconds: { type: [number, "null"] }
+            targetBlockIntervalSeconds: { type: number, const: 194 }
+            partial: { type: boolean }
+            formulaRef: { type: string }
+        mempool:
+          type: object
+          properties:
+            txCount: { type: [integer, "null"] }
+            vbytes: { type: [integer, "null"] }
+            takenAt: { type: [string, "null"], format: date-time }
+            note: { type: string }
+        market:
+          type: object
+          description: Market data, deliberately separated from chain metrics.
+          properties:
+            ticks:
+              type: array
+              items: { $ref: "#/components/schemas/MarketTick" }
+            note: { type: string }
+
+    MetricSeries:
+      type: object
+      required: [meta, series, window, unit, partial, points]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        series: { $ref: "#/components/schemas/SeriesName" }
+        window: { $ref: "#/components/schemas/Window" }
+        unit:
+          type: string
+          enum: [attempts_per_second, difficulty, seconds, count, grains, rank, macs, ratio]
+          description: |
+            How to interpret each point's string `value`. `macs` values can
+            exceed 2^53, so treat them as decimal strings (BigInt), never
+            Number. `ratio` values are decimal quotients carrying ~16+
+            significant digits (never fixed-decimal rounded; the smallest
+            possible ratio is ~9.1e-13).
+        partial: { type: boolean }
+        points:
+          type: array
+          description: Oldest first.
+          items:
+            type: object
+            required: [time, height, value]
+            properties:
+              time: { type: string, format: date-time }
+              height: { type: integer }
+              value:
+                type: string
+                description: A decimal string; grains when `unit` is `grains`.
+        aggregate:
+          type: object
+          description: |
+            The windowed headline figure. Present for `work-rate`
+            (ratePerSecond/workSum) and for the certificate-arithmetic series
+            `declared-arithmetic`/`proven-arithmetic`/`attestation-ratio`
+            (declaredMacsSum/provenMacsSum/ratio/macsPerSecond). The aggregate
+            ratio is MAC-weighted (sum proven / sum declared), not the mean of
+            per-block ratios.
+          properties:
+            ratePerSecond: { type: number }
+            workSum: { $ref: "#/components/schemas/Decimal" }
+            declaredMacsSum: { $ref: "#/components/schemas/Decimal" }
+            provenMacsSum: { $ref: "#/components/schemas/Decimal" }
+            ratio: { type: number }
+            macsPerSecond: { type: number }
+            blocks: { type: integer }
+            seconds: { type: number }
+            partial: { type: boolean }
+
+    Emission:
+      type: object
+      required: [meta, curve, height, currentSubsidyGrains, observedIssuanceGrains, milestones]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        curve:
+          type: object
+          properties:
+            formula: { type: string }
+            maxSupplyGrains: { $ref: "#/components/schemas/Grains" }
+            emissionConstantBlocks:
+              type: integer
+              const: 650226
+              description: H, the half-emission height, derived from the 194 s target interval.
+            grainsPerPRL: { $ref: "#/components/schemas/Grains" }
+            note: { type: string }
+        height: { type: integer }
+        currentSubsidyGrains: { $ref: "#/components/schemas/Grains" }
+        observedIssuanceGrains:
+          allOf: [{ $ref: "#/components/schemas/Grains" }]
+          description: Sum of coinbase outputs over canonical blocks. Keshi's headline supply number.
+        theoreticalIssuanceGrains: { $ref: "#/components/schemas/Grains" }
+        window: { $ref: "#/components/schemas/Window" }
+        blockIntervalSeconds: { type: number }
+        blockIntervalSource: { type: string }
+        milestones:
+          type: array
+          items:
+            type: object
+            required: [fraction, height, reached]
+            properties:
+              fraction: { type: number, examples: [0.25, 0.5, 0.75, 0.9] }
+              height: { type: integer }
+              reached: { type: boolean }
+              projectedDate: { type: [string, "null"], format: date-time }
+              projection:
+                type: string
+                description: Present only for unreached milestones; marks the date as a projection.
+
+    Pools:
+      type: object
+      required: [meta, window, blocks, attributedBlocks, unattributedShare, pools, concentration]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        window: { type: string, enum: ["24h", "7d", "30d"] }
+        blocks: { type: integer }
+        attributedBlocks: { type: integer }
+        unattributedShare: { type: number }
+        pools:
+          type: array
+          items:
+            type: object
+            required: [name, confidence, blocks, share, attributed]
+            properties:
+              name: { type: string }
+              confidence:
+                type: string
+                enum: [verified, announced, heuristic, none]
+              blocks: { type: integer }
+              share: { type: number, description: Fraction of all blocks in the window. }
+              coinbaseValueGrains: { $ref: "#/components/schemas/Grains" }
+              attributed:
+                type: boolean
+                description: False for the `unattributed` aggregate row.
+        concentration:
+          type: object
+          properties:
+            top1: { type: number }
+            top3: { type: number }
+            top5: { type: number }
+            effectivePools:
+              type: number
+              description: Inverse Herfindahl index 1/Σs² over attributed shares.
+            nakamotoCoefficient:
+              type: integer
+              description: Fewest attributed pools whose shares sum above 50%.
+            basis: { type: string, const: "attributed blocks only" }
+            caveat: { type: string }
+            unattributedFraction: { type: number }
+
+    PoolDirectory:
+      type: object
+      required: [meta, labels, labelCount, snapshot]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        labels:
+          type: array
+          description: Every pool_labels row, sorted by all-time block count descending, then name, then address.
+          items: { $ref: "#/components/schemas/PoolDirectoryEntry" }
+        labelCount: { type: integer }
+        snapshot:
+          type: object
+          description: |
+            The chain state the counts were computed against, read in the
+            same repeatable-read snapshot as the counts. totalBlocks is the
+            denominator for any share derived from a label's blocks.
+          required: [tipHeight, tipHash, totalBlocks, basis]
+          properties:
+            tipHeight:
+              type: [integer, "null"]
+              description: Canonical tip height inside the snapshot; null on an empty index, never 0.
+            tipHash:
+              oneOf:
+                - { $ref: "#/components/schemas/Hash" }
+                - { type: "null" }
+            totalBlocks:
+              type: integer
+              description: All canonical blocks at heights 0..tip; 0 on an empty index.
+            basis: { type: string }
+
+    PoolDirectoryEntry:
+      type: object
+      description: |
+        One `pool_labels` row. name, source and feePct are label metadata
+        (manually seeded; self-declared or explorer-cross-validated per
+        confidence), not chain-verified; only blocks is chain-derived. The
+        key is the coinbase address, not a pool entity: one operator can
+        span several labels. Payout scheme has no column in the schema and
+        is deliberately absent; adding it requires a migration.
+      required: [name, address, confidence, source, feePct, addedAt, blocks]
+      properties:
+        name: { type: string, examples: ["Pearl Fortune"] }
+        address: { $ref: "#/components/schemas/Address" }
+        confidence:
+          type: string
+          enum: [verified, announced, heuristic]
+          description: |
+            verified = block-producing wallet cross-validated against two
+            independent explorers; announced = self-declared, no blocks
+            found; heuristic = clustering (not in v0.1).
+        source:
+          type: [string, "null"]
+          description: Provenance note for the label; manually seeded, not chain-derived.
+        feePct:
+          type: [number, "null"]
+          description: |
+            Pool-advertised fee in percent; self-declared, applied to
+            payouts by the pool, not verifiable on chain. Null when no fee
+            is on record, never 0 as a stand-in for unknown.
+        addedAt: { type: string, format: date-time }
+        blocks:
+          type: integer
+          description: |
+            All-time count of canonical blocks whose coinbase output
+            address equals this label's address, out of snapshot.totalBlocks
+            (all canonical blocks at heights 0..tip). Unit is blocks per
+            label address; unlabeled blocks appear in no entry.
+
+    Share:
+      type: object
+      description: |
+        A share stated with its exact numerator, denominator and basis (the
+        denominator's composition and its unit of analysis). value is null
+        when the denominator is zero: an undefined share is never rendered
+        as 0.
+      required: [value, numerator, denominator, basis]
+      properties:
+        value: { type: [number, "null"] }
+        numerator: { type: integer }
+        denominator: { type: integer }
+        basis: { type: string }
+
+    PoolCertProfile:
+      type: object
+      description: |
+        One labeled pool's certificate-geometry profile over its canonical
+        blocks at heights 0..tip at the stated decoder version, computed in
+        one repeatable-read snapshot (docs/metrics.md#pool-cert-profile).
+        Consistency, never proof: no figure shows that real inference
+        occurred or that a declared matmul ran, and configuration is
+        reported as measurement, not judgement.
+      required:
+        [meta, pool, snapshot, blocks, shapeClassCounts, rankHistogram,
+         tileSignatureCounts, moeShare, outOfScope]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        pool:
+          type: object
+          required: [name, labelAddresses]
+          properties:
+            name: { type: string, examples: ["Pearl Fortune"] }
+            labelAddresses:
+              type: integer
+              description: |
+                pool_labels rows carrying this name; the profile aggregates
+                all of them. Labels are addresses, not entities.
+        snapshot:
+          type: object
+          description: The chain state every figure was computed against.
+          required: [tipHeight, tipHash, totalBlocks, decoderVersion, basis]
+          properties:
+            tipHeight:
+              type: [integer, "null"]
+              description: Canonical tip height inside the snapshot; null on an empty index, never 0.
+            tipHash:
+              oneOf:
+                - { $ref: "#/components/schemas/Hash" }
+                - { type: "null" }
+            totalBlocks:
+              type: integer
+              description: All canonical blocks at heights 0..tip, the share-of-chain denominator.
+            decoderVersion: { type: integer }
+            basis: { type: string }
+        blocks:
+          type: object
+          required: [attributed, decoded, shareOfCanonical, basis]
+          properties:
+            attributed:
+              type: integer
+              description: |
+                Canonical blocks whose coinbase miner address carries this
+                pool label (unit: blocks), the same matching /v1/pools uses.
+            decoded:
+              type: integer
+              description: |
+                The subset of attributed blocks with a certificate row at
+                the stated decoder version: the population every census in
+                this response reads. meta.partial is true while decoded is
+                a strict subset of attributed.
+            shareOfCanonical: { $ref: "#/components/schemas/Share" }
+            basis: { type: string }
+        shapeClassCounts:
+          type: object
+          required: [counts, basis, modelConsistentShare]
+          properties:
+            counts:
+              type: object
+              description: |
+                Blocks per frozen PREREG-001 class over the pool's decoded
+                blocks, computed by the same internal/certclass classifier
+                the block detail endpoint and /v1/certs/search serve. All
+                five classes are always present; a 0 is a true zero count.
+              required:
+                [EMPTY, OFFICIAL_CONSISTENT, OFFICIAL_PATTERN_NONMODEL,
+                 MODEL_SHAPED_CUSTOM, CUSTOM]
+              properties:
+                EMPTY: { type: integer }
+                OFFICIAL_CONSISTENT: { type: integer }
+                OFFICIAL_PATTERN_NONMODEL: { type: integer }
+                MODEL_SHAPED_CUSTOM: { type: integer }
+                CUSTOM: { type: integer }
+            basis: { type: string }
+            modelConsistentShare:
+              allOf: [{ $ref: "#/components/schemas/Share" }]
+              description: OFFICIAL_CONSISTENT blocks over the pool's non-EMPTY decoded blocks.
+        rankHistogram:
+          type: object
+          required: [buckets, basis, boundaryHugging]
+          properties:
+            buckets:
+              type: array
+              description: |
+                Decoded blocks per declared noise rank, rank ascending; rank
+                0 is the genesis empty certificate, shown not hidden.
+              items:
+                type: object
+                required: [rank, blocks]
+                properties:
+                  rank: { type: integer }
+                  blocks: { type: integer }
+            basis: { type: string }
+            boundaryHugging:
+              allOf: [{ $ref: "#/components/schemas/Share" }]
+              description: |
+                Rank-128 blocks declaring exactly k = 2048 (the legal
+                minimum configuration after the rank-penalty softfork) over
+                the pool's rank-128 decoded blocks; a neutral measurement of
+                configuration against the rule (roadmap 14.3).
+        tileSignatureCounts:
+          type: object
+          required: [signatures, basis, officialBytesShare]
+          properties:
+            signatures:
+              type: array
+              description: |
+                Non-EMPTY decoded blocks per (tileH, tileW, rank,
+                officialBytes) cell, blocks descending. officialBytes means
+                both 6-byte swizzle patterns byte-match the official sm90
+                fragment (the classifier's T1 byte tests). Signatures
+                identify mining software, never an operator and never
+                honesty (roadmap 14.4).
+              items:
+                type: object
+                required: [tileH, tileW, rank, officialBytes, blocks]
+                properties:
+                  tileH: { type: integer }
+                  tileW: { type: integer }
+                  rank: { type: integer }
+                  officialBytes: { type: boolean }
+                  blocks: { type: integer }
+            basis: { type: string }
+            officialBytesShare:
+              allOf: [{ $ref: "#/components/schemas/Share" }]
+              description: |
+                Blocks whose patterns byte-match the official fragment over
+                the pool's non-EMPTY decoded blocks; an upper bound on the
+                unmodified stack.
+        moeShare:
+          allOf: [{ $ref: "#/components/schemas/Share" }]
+          description: |
+            Blocks declaring experts (moe_e > 0) over the pool's non-EMPTY
+            decoded blocks; a declared parameter, not evidence of expert
+            computation.
+        outOfScope:
+          type: string
+          description: |
+            States that the operational-hygiene block (empty-block rate,
+            template staleness) is held for right of reply (roadmap 9.4 /
+            14.5) and is not computed by this endpoint.
+
+    ConcentrationMeasures:
+      type: object
+      description: |
+        One basis of the per-bin concentration measures. An undefined
+        measure is null, never 0: a 0 Nakamoto coefficient would read as
+        majority control, the opposite of the truth. effectiveOperators
+        (inverse HHI 1/Σs²) appears on the attributed basis only, where
+        shares sum to about one.
+      required: [basis, top1, top3, top5, nakamotoCoefficient]
+      properties:
+        basis: { type: string }
+        top1: { type: [number, "null"] }
+        top3: { type: [number, "null"] }
+        top5: { type: [number, "null"] }
+        effectiveOperators: { type: [number, "null"] }
+        nakamotoCoefficient: { type: [integer, "null"] }
+
+    ConcentrationSeries:
+      type: object
+      required: [meta, bin, bins]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        bin: { type: integer, description: Blocks per bin, echoed from the request. }
+        binUnit: { type: string, const: "blocks" }
+        maxBins: { type: integer }
+        bins:
+          type: array
+          description: Oldest first; the newest bin is partial while it fills.
+          items:
+            type: object
+            required:
+              [from, to, blocks, attributedBlocks, unattributedBlocks,
+               unattributedFraction, attributed, allBlocks]
+            properties:
+              from: { type: integer }
+              to: { type: integer }
+              startTime: { type: string, format: date-time }
+              endTime: { type: string, format: date-time }
+              blocks: { type: integer }
+              attributedBlocks:
+                type: integer
+                description: Blocks with a decodable coinbase miner address.
+              unattributedBlocks: { type: integer }
+              unattributedFraction:
+                type: number
+                description: unattributedBlocks over all canonical blocks in the bin.
+              distinctMiners: { type: integer }
+              attributed: { $ref: "#/components/schemas/ConcentrationMeasures" }
+              allBlocks: { $ref: "#/components/schemas/ConcentrationMeasures" }
+              partial: { type: boolean }
+
+    ProfitPerWork:
+      type: object
+      required: [meta, window, blocks, windowBlocks, revenue, workSum, grainsPerWork, feeDrag]
+      properties:
+        meta: { $ref: "#/components/schemas/Meta" }
+        window: { type: string, enum: ["24h", "7d", "30d"] }
+        blocks:
+          type: integer
+          description: Canonical blocks in the window carrying a work sample; the accounted population.
+        windowBlocks:
+          type: integer
+          description: Every canonical block in the window. Differs from blocks only mid-backfill.
+        revenue:
+          type: object
+          properties:
+            subsidyGrains: { $ref: "#/components/schemas/Grains" }
+            feesGrains: { $ref: "#/components/schemas/Grains" }
+            totalGrains: { $ref: "#/components/schemas/Grains" }
+        workSum: { $ref: "#/components/schemas/Decimal" }
+        workUnit: { type: string }
+        grainsPerWork:
+          oneOf: [{ $ref: "#/components/schemas/Decimal" }, { type: "null" }]
+          description: Σ(subsidy+fees)/Σwork as a decimal string in grains per matmul attempt; null when the window holds no work.
+        seconds: { type: number }
+        partial: { type: boolean }
+        feeDrag:
+          type: object
+          description: |
+            Advertised-fee cost over the subset of blocks whose coinbase
+            address carries a pool label with a published fee. Self-declared
+            fees, not verified on chain; unavailable (nulls) when the window
+            has no such block.
+          required: [available, basis, blocks, coinbaseGrains, dragGrains, fraction]
+          properties:
+            available: { type: boolean }
+            basis: { type: string }
+            blocks: { type: integer }
+            coinbaseGrains: { $ref: "#/components/schemas/Grains" }
+            dragGrains:
+              oneOf: [{ $ref: "#/components/schemas/Decimal" }, { type: "null" }]
+            fraction: { type: [number, "null"] }
+            note: { type: string }
+
+    SearchResult:
+      type: object
+      required: [kind, location, resolvedAt]
+      properties:
+        kind:
+          type: string
+          enum: [block, transaction, address]
+        location:
+          type: string
+          description: The canonical endpoint for the resolved resource.
+          examples: ["/v1/blocks/94748"]
+        resolvedAt: { type: string, format: date-time }
+        block: { $ref: "#/components/schemas/Block" }
+        txid: { $ref: "#/components/schemas/Hash" }
+        blockHash: { $ref: "#/components/schemas/Hash" }
+        blockHeight: { type: integer }
+        address: { $ref: "#/components/schemas/Address" }

@@ -1,0 +1,115 @@
+{
+  "source": "pearl@v1.2.1 reference implementation (py-pearl-mining) cross-checked against pip blake3",
+  "tree_root_vectors": [
+    {
+      "name": "one-byte",
+      "data_rule": "data[i] = (i*31 + seed) & 0xff",
+      "seed": 7,
+      "data_len": 1,
+      "data_sha256": "ca358758f6d27e6cf45272937977a748fd88391db679ceda7dc7bf1f005ee879",
+      "key_hex": "6b8aa9c8e70625446382a1c0dffe1d3c5b7a99b8d7f61534537291b0cfee0d2c",
+      "root_hex": "926092a9cb9d8edbf0bc3db428db116b6975dead27dd1737ee36fe2a2be85855"
+    },
+    {
+      "name": "pad-1023",
+      "data_rule": "data[i] = (i*31 + seed) & 0xff",
+      "seed": 11,
+      "data_len": 1023,
+      "data_sha256": "416be90cd43c7ef13cda8f19174491ae6e92578afdc8d5cc599cf8bd789c3a6c",
+      "key_hex": "6f8eadcceb0a29486786a5c4e30221405f7e9dbcdbfa1938577695b4d3f21130",
+      "root_hex": "68c29dbc0c249c1332486681c14fbee4291ee1e694214d9ff103b1fe7139db8f"
+    },
+    {
+      "name": "exact-chunk",
+      "data_rule": "data[i] = (i*31 + seed) & 0xff",
+      "seed": 13,
+      "data_len": 1024,
+      "data_sha256": "ca0470b037bb3172119ba2f1915f2e64c4dd3fa22544ee5143bbeca3a9dd5a46",
+      "key_hex": "7190afceed0c2b4a6988a7c6e504234261809fbeddfc1b3a597897b6d5f41332",
+      "root_hex": "6a53f87827c0b9f8e769952c0c9711e780ca8f39bcdea096afd64e45303c18f3"
+    },
+    {
+      "name": "chunk-plus-one",
+      "data_rule": "data[i] = (i*31 + seed) & 0xff",
+      "seed": 17,
+      "data_len": 1025,
+      "data_sha256": "6396aca652059f2b2fdf2717427a879e27f370bb713ee9a6e0240e61023dc578",
+      "key_hex": "7594b3d2f1102f4e6d8cabcae90827466584a3c2e1001f3e5d7c9bbad9f81736",
+      "root_hex": "a043191a733a6a080951202f8aae5eeb67c324741efac99115cbfb9dd38291c1"
+    },
+    {
+      "name": "two-chunks",
+      "data_rule": "data[i] = (i*31 + seed) & 0xff",
+      "seed": 19,
+      "data_len": 2048,
+      "data_sha256": "4109ea5172b8d4e75f59399afcc47de05959f125a13b68e40561427d15e801cc",
+      "key_hex": "7796b5d4f31231506f8eadcceb0a29486786a5c4e30221405f7e9dbcdbfa1938",
+      "root_hex": "1e9be52afe79726a0e93c74fbffd18614875ac3dd853855ade7939e73a70805d"
+    },
+    {
+      "name": "odd-multi",
+      "data_rule": "data[i] = (i*31 + seed) & 0xff",
+      "seed": 23,
+      "data_len": 5631,
+      "data_sha256": "922243f7bd40d561366342f454ccde95a859a8973677fba47e2a6266bf4dc19a",
+      "key_hex": "7b9ab9d8f71635547392b1d0ef0e2d4c6b8aa9c8e70625446382a1c0dffe1d3c",
+      "root_hex": "bee900024cab2efcfa53d29e6ef228d44a3f3e4e48093db223e515b955bfd2fa"
+    },
+    {
+      "name": "tensor-ish",
+      "data_rule": "data[i] = (i*31 + seed) & 0xff",
+      "seed": 29,
+      "data_len": 98304,
+      "data_sha256": "f0a63fd024dae35043bd5fddcfcce6dd1bca1bf5e7bdf0a8c1347a6c71411485",
+      "key_hex": "81a0bfdefd1c3b5a7998b7d6f51433527190afceed0c2b4a6988a7c6e5042342",
+      "root_hex": "d579ffbd586627644bb58f0174a5c0cecfda9c7bc92086405d0944e914d85b7f"
+    }
+  ],
+  "job_key_vectors": [
+    {
+      "name": "official-fragment-dense",
+      "header_bytes_hex": "000000201f1e1d1c1b1a191817161514131211100f0e0d0c0b0a090807060504030201003f3e3d3c3b3a393837363534333231302f2e2d2c2b2a292827262524232221203412aa663ebf0018",
+      "config_bytes_hex": "00200000800000000701000000000001031f00000000000000000000000000000000000000000000000000000000000000000000",
+      "config_fields": {
+        "common_dim": 8192,
+        "rank": 128,
+        "mma_type": 0,
+        "rows_pattern_hex": "070100000000",
+        "cols_pattern_hex": "0001031f0000",
+        "moe_e": 0,
+        "moe_top_k": 0
+      },
+      "job_key_hex": "53671d82881bc75a4bed9170bcbd54efbfeb1913937eb970d19615e2a3295c56"
+    },
+    {
+      "name": "test-pattern-dense",
+      "header_bytes_hex": "01000000ababababababababababababababababababababababababababababababababcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd66666666ffff2f1d",
+      "config_bytes_hex": "00040000200000000701030100000001030101010000000000000000000000000000000000000000000000000000000000000000",
+      "config_fields": {
+        "common_dim": 1024,
+        "rank": 32,
+        "mma_type": 0,
+        "rows_pattern_hex": "070103010000",
+        "cols_pattern_hex": "000103010101",
+        "moe_e": 0,
+        "moe_top_k": 0
+      },
+      "job_key_hex": "4c99252922045944d67118838e8874c9a24fb1c081fdf34c50dcaf5e12f079e9"
+    },
+    {
+      "name": "moe-trailer",
+      "header_bytes_hex": "00000020000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f111111111111111111111111111111111111111111111111111111111111111101000067ffff001b",
+      "config_bytes_hex": "00080000400000000701030100000001030101018000080000000000000000000000000000000000000000000000000000000000",
+      "config_fields": {
+        "common_dim": 2048,
+        "rank": 64,
+        "mma_type": 0,
+        "rows_pattern_hex": "070103010000",
+        "cols_pattern_hex": "000103010101",
+        "moe_e": 128,
+        "moe_top_k": 8
+      },
+      "job_key_hex": "b93177e42c947485f05707f208da35bde4fb0595eac2cb6a371ff3f3fe4b5e40"
+    }
+  ]
+}

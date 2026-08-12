@@ -1,0 +1,201 @@
+<!--
+Internal status, not part of the proposal text: DRAFT, never submitted.
+Drafted 2026-08-10 on operator request; third of the PIP family (with
+pip-draft-weight-identity.md and pip-draft-provenance-disclosure.md).
+Unlike the other two, this draft does not disclose the OBS-005 result;
+its evidence base is the PCCR register and public repository artifacts.
+ADR-0014 (2026-08-10) governs the family: published on the project's own
+site as part of the launch package, upstream submission a separate
+operator decision. It still names the governance record plainly, so
+submission is an operator decision with its own diplomacy
+considerations, and the external claims carry check dates that need
+refreshing at submission.
+No pool or individual is named, per the research-integrity rules.
+Additive pass 2026-08-11 after PCCR-0007: the count moves from four
+activated mainnet changes to five (four with no PIP, one with a PIP) on
+the register's own counting rule, the 96,251 notice window is corrected
+from the register's erratum, the 99,000 fork is added as a data point,
+the 4,320-block sizing is restated against both measured windows, and the
+whitepaper's block-structure quote leads the Motivation. The PR
+merge-latency detail ("about two minutes after opening") is deliberately
+kept in the register and dropped here: the register is the ledger, this
+is a proposal, and the merge-review fact carries the same weight without
+the stopwatch.
+-->
+
+---
+pip: 9999
+title: Consensus-change documentation and activation notice
+description: Requires a PIP and a minimum activation notice for every consensus rule change, and a maintained register of all such changes.
+author: TODO before submission (operator decision on name or handle)
+status: Draft
+type: Process
+created: 2026-08-10
+---
+
+## Abstract
+
+This PIP defines process requirements for changes to Pearl's consensus
+rules: every consensus-affecting change gets a Standards Track PIP,
+planned activations carry a minimum on-chain notice window, emergency
+and retroactive changes are documented within a bounded period after the
+fact, and the PIPs repository maintains a register listing every
+consensus change ever activated on mainnet, including the historical
+ones that predate this PIP. The goal is that any party running a node,
+a pool, or an independent index can learn what the validity rules are,
+and when they changed, from documents rather than from diffing releases.
+
+## Motivation
+
+Pearl's block structure already anticipates consensus change. The
+whitepaper's block-structure section defines the certificate as
+"certificate := version || bytes" and states that "Separating the
+certificates keeps header format stable, yet allowing future upgrades to
+the certificate mechanism" (Pearl whitepaper, Block Structure; quoted
+2026-08-11). The mechanism works and has carried two upgrades, to
+version 2 at height 71,935 and to version 3 at height 99,000. What it
+does not carry is the document trail that tells a node or pool operator
+which rules are in force at which height, and when that changed. This PIP
+adds that half.
+
+Pearl's governance record to date, from public artifacts:
+
+1. Mainnet has activated five consensus-affecting changes beyond the
+   launch rules (unit: activated mainnet consensus changes, one per
+   register entry; the genesis rule set is a baseline rather than a
+   change and is excluded, as is any proposal with no activation height):
+   a certificate-capability hard fork at height 71,935, a
+   capability-retracting softfork at height 91,630, a release-gated
+   validity-semantics fix in v1.2.1, a proof-parameter softfork at height
+   96,251, and a commitment-layer hard fork at height 99,000. One of the
+   five (71,935) has a PIP; the other four have none. The one with a PIP
+   is the one whose capability was later retracted, at 91,630, with no
+   PIP in either direction.
+2. The 96,251 softfork shipped in a release published 12 h 14 m 35 s
+   before its activation height (release publication timestamp against
+   the activation block's timestamp, recomputed 2026-08-11; an earlier
+   estimate in our own register, about 18.5 hours, is not reproducible
+   from those two endpoints). Measured adaptation on the network: one
+   pool stack shipped four releases within 14 hours of activation, and
+   the whole network reached full compliance with the new rule about two
+   days after the fork.
+3. The 99,000 hard fork changed how the noise seeds derive from the
+   certificate's commitments and required a new certificate version
+   network-wide at a single height. The release carrying the height that
+   activated was published 1 h 33 m 56 s before that block, the shorter
+   of the two notice windows we have measured (same two endpoints,
+   measured 2026-08-11; the 71,935 and 91,630 changes carry no release
+   publication timestamp we could measure against). The upgrade guide
+   shipped in that release states that mining software
+   deriving seeds the old way produces invalid shares from the fork
+   height on, so the notice window was also the window in which every
+   miner had to be rebuilt.
+4. One testnet fork height has been edited retroactively: a testnet
+   fleet was not upgraded for the 91,630-class change, blocks that
+   violated the shipped height were accepted, and a later release moved
+   the height after the fact to legalize them (public pull request,
+   merged by its author with no review comments; checked 2026-08-07).
+5. The PIP repository's complete history shows no outside contributions
+   and no issues; the research forum its README points contributors to
+   does not exist as of 2026-08-08; the dedicated PIP host name resolves
+   but does not respond (checked 2026-08-05).
+
+None of this is a claim of bad faith. The record shows that release diffs
+are currently the reliable statement of Pearl's consensus rules, and that
+the notice available to node and pool operators has been as short as
+1 h 34 m. Independent validation, academic measurement, exchange listing
+diligence, and miner capacity planning all need better than that.
+
+## Specification
+
+1. A planned change to consensus validity rules MUST be described by a
+   Standards Track PIP (category Consensus) merged into the PIPs
+   repository, at Draft status or later, before the release that
+   schedules its activation is published.
+2. The PIP for a planned change MUST state: the fork class (hard or
+   soft), the activation height and network, the exact validation rules
+   changed (with source references), and the behavior of non-upgraded
+   nodes across activation.
+3. A planned activation height MUST lie at least 4,320 blocks after the
+   publication of the release that first ships it (9.7 days at the
+   194-second block target).
+4. An emergency change (one whose disclosure ahead of time would enable
+   attacks, or whose urgency precludes notice) is exempt from rules 1
+   and 3, and MUST instead be documented by a retroactive PIP within
+   14 days of activation, stating why notice was not possible.
+5. A retroactive edit to any previously shipped consensus parameter,
+   including fork heights on any network, is a consensus change under
+   this PIP and MUST be documented per rule 4.
+6. The PIPs repository MUST maintain a register file with one entry per
+   consensus change activated on Pearl mainnet: height (or release
+   gate), fork class, shipping release, the governing PIP or the word
+   "none", and one line of description. Where the same change also
+   activated on testnet, testnet2, regtest or simnet, the entry MUST
+   record those heights inside it; they are not separate entries, so the
+   entry count and the mainnet change count stay equal. The register
+   MUST be backfilled to genesis. Historical entries with no PIP keep
+   "none"; this PIP does not rewrite history, it records it.
+7. PIP editors SHOULD decline to mark a Consensus PIP Final while any of
+   its activation facts are missing from the register.
+
+## Rationale
+
+The notice window is sized from measured behavior. Under forcing
+conditions the network's pools adapted within one to two days, so 4,320
+blocks (9.7 days at the 194-second block target) is about 4.9 times the
+two-day adaptation figure. Against the two notice windows actually
+measured it is a large multiple: 19 times the 12 h 14 m 35 s of the
+96,251 softfork, and 149 times the 1 h 33 m 56 s of the 99,000 hard fork.
+Rule 3 constrains when an activation height may fall, not when code may
+ship; rule 1 is the one that gates the scheduling release, and it asks
+only for a Draft PIP. The emergency lane exists because some fixes
+genuinely cannot be pre-announced; the cost of using it is only that the
+documentation debt comes due within two weeks.
+
+The register exists because the current arrangement puts the work on the
+reader: the record of what Pearl's consensus rules are lives in release
+diffs, and at least one independent register had to be built outside the
+project to track them. Backfilling from genesis is cheap: on rule 6's
+unit, one entry per activated mainnet consensus change, the whole history
+is five entries plus the launch rule set as of 2026-08-11, each carrying
+its other-network heights inside it. It can seed from existing
+independent work.
+
+Precedent starts inside Pearl. PIP-1 established this repository's
+process (dated 2026-05-17), and PIP-2 documented the height-71,935 hard
+fork, the single activated mainnet consensus change that has a PIP. The
+pattern is already set; this PIP asks that it apply to every consensus
+change instead of one in five. Outside Pearl, Bitcoin's BIP-2 process and
+activation conventions, and Ethereum's EIP process with Meta EIPs
+enumerating each fork's contents, both treat "the rules changed, where is
+the document" as a process invariant. This PIP asks for the same
+invariant at a fraction of the ceremony, matched to a small ecosystem.
+
+## Backwards Compatibility
+
+No protocol change and no effect on any deployed software. The
+requirements apply to changes scheduled after this PIP reaches Active;
+historical changes are affected only by appearing in the register.
+
+## Security Considerations
+
+Short-notice forks concentrate upgrade risk: operators patch under time
+pressure, in two classes that now both have an observed instance. A
+non-upgraded fleet keeps extending a minority chain; the observed
+instance is the retroactively legalized testnet blocks in Motivation
+item 4. A miner or pool that does not rebuild in time produces invalid
+shares from the activation height on; the observed instance is the
+mainnet hard fork in Motivation item 3, with 1 h 33 m 56 s of notice,
+and unlike the height-71,935 fork it left no path for old mining
+software to keep producing valid work. A minimum notice window spreads
+both risks. The emergency lane preserves the ability to ship urgent
+fixes; requiring retroactive documentation limits its overuse, since
+every use leaves a dated public record. A maintained register also
+hardens the network against disputes about which rules were in force at
+a given height, which matters for any party validating history
+independently.
+
+## Copyright
+
+Copyright and related rights waived via
+[CC0](https://creativecommons.org/publicdomain/zero/1.0/).

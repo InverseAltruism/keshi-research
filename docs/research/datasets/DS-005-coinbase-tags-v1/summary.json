@@ -1,0 +1,163 @@
+{
+ "toHeight": 97000,
+ "blocks": 97001,
+ "coverage": {
+  "rows": 97001,
+  "minHeight": 0,
+  "maxHeight": 97000,
+  "missingHeights": 0
+ },
+ "parsedBlocks": 97001,
+ "parseErrors": {
+  "count": 0,
+  "rows": []
+ },
+ "sequenceFieldNot_ffffffff": 792,
+ "denominators": {
+  "tagFamilyShares": "per parse-valid block, n=97001 of 97001 archived canonical blocks in 0..97000",
+  "crosstab": "parse-valid blocks; pool labels are payout-address matches against the migrations/0001_core.sql seed; unlabeled is any other or missing payout address"
+ },
+ "tagFamilies": {
+  "/P2SH/pearld/": {
+   "blocks": 83431,
+   "shareOfParsedPct": 86.01,
+   "firstHeight": 1,
+   "lastHeight": 96991,
+   "topPayoutAddresses": [
+    {
+     "address": "prl1pl7ch5q7f225sumuutpw9u466auzellprh432z4vd9pfzvnfqmysq2f3xjw",
+     "blocks": 8202
+    },
+    {
+     "address": "prl1p50ltku2jjcwdxh4nzjrw98nwdswdn25qdkr2fdtw8hsq3qu9cdhscchnnm",
+     "blocks": 6858
+    },
+    {
+     "address": "prl1p2w3ruv4qtw7hcxy7gksge6plefxegfxpfcl0kv8pujadsm9a5t2qtvxq7h",
+     "blocks": 3451
+    },
+    {
+     "address": "prl1pksfzrn8g760gmcqy65a4tl30eyv25eksl5sf8y332kes6fwx9pjszgymmz",
+     "blocks": 2556
+    },
+    {
+     "address": "prl1pkydzjqnuunlu86f653939rp6ujtug988rfxj04te32sjspqr2kksts44gl",
+     "blocks": 1966
+    }
+   ]
+  },
+  "pool.kryptex.com": {
+   "blocks": 5118,
+   "shareOfParsedPct": 5.276,
+   "firstHeight": 67675,
+   "lastHeight": 96999,
+   "topPayoutAddresses": [
+    {
+     "address": "prl1puv0gqv4x0wd0ylwz086y3sqrg4a6umza9r08aecehjrmdqq7mctsmqaqsh",
+     "blocks": 5118
+    }
+   ]
+  },
+  "other-ascii": {
+   "blocks": 3844,
+   "shareOfParsedPct": 3.963,
+   "firstHeight": 0,
+   "lastHeight": 96963,
+   "topPayoutAddresses": [
+    {
+     "address": "prl1p50ltku2jjcwdxh4nzjrw98nwdswdn25qdkr2fdtw8hsq3qu9cdhscchnnm",
+     "blocks": 3472
+    },
+    {
+     "address": "prl1pla58v6vfhnp4qnxw0eqzsyzl3e8qrtkv4es5ajjl48yxc8vwfs8qlk7rh9",
+     "blocks": 247
+    },
+    {
+     "address": "prl1prsmhnjnphz4ll4v9lhg8nhr0tv3v7g8sl6qkuyqmnwkq7rhs9c2qqak0rr",
+     "blocks": 109
+    },
+    {
+     "address": "prl1ps04hu7s8nzmn3t7mdf8c6jwtk7pzfxw4p7p6avxge367a8xnfzcq7c26dk",
+     "blocks": 9
+    },
+    {
+     "address": "prl1phfy489pkflmexz7xmarf4fxef627x3lcpa4m2ln8sljp48z6guyqlmyaqm",
+     "blocks": 4
+    }
+   ]
+  },
+  "/pearl-pool/": {
+   "blocks": 3161,
+   "shareOfParsedPct": 3.259,
+   "firstHeight": 57963,
+   "lastHeight": 97000,
+   "topPayoutAddresses": [
+    {
+     "address": "prl1pspr7jpw2a6ed0mw0h03zmu7huxnfjh46j3lzgsrez0ysvh7mcq4q4ztsxp",
+     "blocks": 3161
+    }
+   ]
+  },
+  "none": {
+   "blocks": 1447,
+   "shareOfParsedPct": 1.492,
+   "firstHeight": 55752,
+   "lastHeight": 96997,
+   "topPayoutAddresses": [
+    {
+     "address": "prl1p50ltku2jjcwdxh4nzjrw98nwdswdn25qdkr2fdtw8hsq3qu9cdhscchnnm",
+     "blocks": 298
+    },
+    {
+     "address": "prl1pz0hl5q22pd0g4sgyhvfhtr79ptmv460r7xuw8r6wf478a3r0907qk65tvq",
+     "blocks": 122
+    },
+    {
+     "address": "prl1pmlxdjsmz74xs5u3re0cvwxls34fhp8qzu3r0j2kua3x94tjtfv4s9w3k9a",
+     "blocks": 70
+    },
+    {
+     "address": "prl1phfy489pkflmexz7xmarf4fxef627x3lcpa4m2ln8sljp48z6guyqlmyaqm",
+     "blocks": 37
+    },
+    {
+     "address": "prl1pza6wfwzd4jry6ssu6hlvp5k2x6nvwjmmdrq5rys0007u0kufglcqj98mmp",
+     "blocks": 32
+    }
+   ]
+  }
+ },
+ "crosstabFamilyByPoolLabel": {
+  "/P2SH/pearld/": {
+   "unlabeled": 65815,
+   "Pearl Fortune": 8202,
+   "PearlHash": 6858,
+   "Hero Miners": 2556
+  },
+  "pool.kryptex.com": {
+   "Kryptex": 5118
+  },
+  "other-ascii": {
+   "PearlHash": 3472,
+   "unlabeled": 372
+  },
+  "/pearl-pool/": {
+   "LuckyPool": 3161
+  },
+  "none": {
+   "unlabeled": 1149,
+   "PearlHash": 298
+  }
+ },
+ "poolLabelSeed": {
+  "prl1p50ltku2jjcwdxh4nzjrw98nwdswdn25qdkr2fdtw8hsq3qu9cdhscchnnm": "PearlHash",
+  "prl1puv0gqv4x0wd0ylwz086y3sqrg4a6umza9r08aecehjrmdqq7mctsmqaqsh": "Kryptex",
+  "prl1pl7ch5q7f225sumuutpw9u466auzellprh432z4vd9pfzvnfqmysq2f3xjw": "Pearl Fortune",
+  "prl1pksfzrn8g760gmcqy65a4tl30eyv25eksl5sf8y332kes6fwx9pjszgymmz": "Hero Miners",
+  "prl1pspr7jpw2a6ed0mw0h03zmu7huxnfjh46j3lzgsrez0ysvh7mcq4q4ztsxp": "LuckyPool",
+  "prl1pn7pk3x955mp788u70qslde858x5xqu80z7lklpeuz2ln724ennvqgz3e57": "PearlNet"
+ },
+ "toolVersion": "coinbase-tag-census.py sha256 5c43b6d03a05",
+ "toolCommit": "7eed53a297e3961c3cb77864232cf3e4e57d00dd",
+ "generated": "2026-08-10T19:43:27Z"
+}
