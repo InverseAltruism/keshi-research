@@ -38,3 +38,5 @@ Dataset versions are also deposited on Zenodo with a DOI. The concept DOI [10.52
 ## Relationship to the Keshi platform
 
 The live dashboard, API, collector and infrastructure are maintained in separate repositories and are not part of this one. This repository holds the public research record and the artifacts needed to reproduce it.
+
+The dashboard is at [keshi.io](https://keshi.io), which renders every document in this repository at `/research` alongside the live index it computes them from, and serves the read API at `/api/v1`. The documents here are the source; the site is a rendering of them at a pinned commit.

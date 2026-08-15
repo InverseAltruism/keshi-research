@@ -50,11 +50,11 @@
   },
   "reference": {
     "label": "Proposed minimum activation notice",
-    "proposedMinimumNoticeBlocks": 4320,
+    "proposedMinimumNoticeBlocks": 3600,
     "targetBlockSeconds": 194,
     "proposalSlug": "pip-consensus-change-process",
     "source": "docs/research/outreach/pip-draft-consensus-change-process.md, Specification item 3",
-    "note": "A proposal, not a measurement. The seconds and days equivalents are computed by the generator from these two numbers and are never typed here. The block target is the genesis TargetTimePerBlock of 3m14s recorded in PCCR-0001."
+    "note": "A proposal, not a measurement. It is the standard lane's floor; the draft's expedited lane carries a separate and much shorter floor that this reference line does not represent. The seconds and days equivalents are computed by the generator from these two numbers and are never typed here. The block target is the genesis TargetTimePerBlock of 3m14s recorded in PCCR-0001. Revised 2026-08-15 from 4,320 blocks when the draft moved to two lanes."
   },
   "rows": [
     {

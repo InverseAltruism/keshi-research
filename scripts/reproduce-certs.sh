@@ -8,7 +8,7 @@
 #
 #   PEARL_RPC_URL=http://127.0.0.1:44107 \
 #   PEARL_RPC_USER=... PEARL_RPC_PASS=... \
-#   KESHI_API=https://keshi.loeffler.house \
+#   KESHI_API=https://keshi.io \
 #   scripts/reproduce-certs.sh 71935 91630 94748
 #
 # Requirements: curl, jq, python3. Your pearld needs txindex and plain-HTTP or

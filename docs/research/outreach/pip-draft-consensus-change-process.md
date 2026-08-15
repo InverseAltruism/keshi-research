@@ -15,12 +15,26 @@ Additive pass 2026-08-11 after PCCR-0007: the count moves from four
 activated mainnet changes to five (four with no PIP, one with a PIP) on
 the register's own counting rule, the 96,251 notice window is corrected
 from the register's erratum, the 99,000 fork is added as a data point,
-the 4,320-block sizing is restated against both measured windows, and the
+the block sizing is restated against both measured windows, and the
 whitepaper's block-structure quote leads the Motivation. The PR
 merge-latency detail ("about two minutes after opening") is deliberately
 kept in the register and dropped here: the register is the ledger, this
 is a proposal, and the merge-review fact carries the same weight without
 the stopwatch.
+Two-lane revision 2026-08-15, on operator direction. The single window
+plus an unbounded emergency exemption becomes two named lanes. The
+standard window moves from 4,320 blocks (9.7 days) to 3,600 blocks
+(8.1 days); the former emergency exemption becomes an expedited lane
+with a 900-block (48.5 hours) notice floor, a published advisory, a
+scope limited to the mitigation, a retroactive PIP within 7 days rather
+than 14, and a defect description within 30 days. The reasoning is that
+this network is still shipping urgent fixes, so an unpriced exemption
+would be the rule that actually operates. All multiples in the Rationale
+were recomputed for the new figures on 2026-08-15 against the two
+measured windows already in the Motivation; the register's reference
+block in consensus-changes.json moves with them, and the site generator
+cross-checks the phrases "3,600 blocks" and "8.1 days at the 194-second
+block target" against this file.
 -->
 
 ---
@@ -36,14 +50,17 @@ created: 2026-08-10
 ## Abstract
 
 This PIP defines process requirements for changes to Pearl's consensus
-rules: every consensus-affecting change gets a Standards Track PIP,
-planned activations carry a minimum on-chain notice window, emergency
-and retroactive changes are documented within a bounded period after the
-fact, and the PIPs repository maintains a register listing every
-consensus change ever activated on mainnet, including the historical
-ones that predate this PIP. The goal is that any party running a node,
-a pool, or an independent index can learn what the validity rules are,
-and when they changed, from documents rather than from diffing releases.
+rules. Changes take one of two lanes. The standard lane carries a
+Standards Track PIP and a minimum on-chain notice window before
+activation. The expedited lane exists for a defect that puts the network
+at risk, keeps a much shorter notice floor, and pays for the speed with a
+published advisory, a bounded scope, and retroactive documentation. The
+PIPs repository maintains a register listing every consensus change ever
+activated on mainnet, including the historical ones that predate this
+PIP, and recording which lane each one used. The goal is that any party
+running a node, a pool, or an independent index can learn what the
+validity rules are, and when they changed, from documents rather than
+from diffing releases.
 
 ## Motivation
 
@@ -108,49 +125,98 @@ diligence, and miner capacity planning all need better than that.
 
 ## Specification
 
-1. A planned change to consensus validity rules MUST be described by a
-   Standards Track PIP (category Consensus) merged into the PIPs
-   repository, at Draft status or later, before the release that
+A consensus change takes one of two lanes. Rules 1 to 3 define the
+standard lane, rule 4 defines the expedited lane and the conditions on
+which it may be used.
+
+1. A change to consensus validity rules taking the standard lane MUST be
+   described by a Standards Track PIP (category Consensus) merged into
+   the PIPs repository, at Draft status or later, before the release that
    schedules its activation is published.
-2. The PIP for a planned change MUST state: the fork class (hard or
-   soft), the activation height and network, the exact validation rules
-   changed (with source references), and the behavior of non-upgraded
-   nodes across activation.
-3. A planned activation height MUST lie at least 4,320 blocks after the
-   publication of the release that first ships it (9.7 days at the
-   194-second block target).
-4. An emergency change (one whose disclosure ahead of time would enable
-   attacks, or whose urgency precludes notice) is exempt from rules 1
-   and 3, and MUST instead be documented by a retroactive PIP within
-   14 days of activation, stating why notice was not possible.
+2. That PIP MUST state: the fork class (hard or soft), the activation
+   height and network, the exact validation rules changed (with source
+   references), and the behavior of non-upgraded nodes across
+   activation.
+3. A standard-lane activation height MUST lie at least 3,600 blocks
+   after the publication of the release that first ships it (8.1 days at
+   the 194-second block target).
+4. A change whose purpose is to mitigate a defect that is being
+   exploited, or that is exploitable sooner than the standard lane can
+   complete, MAY take the expedited lane. The expedited lane is exempt
+   from rules 1 and 3 and carries these requirements instead:
+   1. The activation height MUST lie at least 900 blocks after the
+      publication of the release that schedules it (48.5 hours at the
+      same block target), unless the release notes state that advance
+      notice would itself increase risk to the network. Where they state
+      that, the notice MAY be shorter, and the statement MUST ship with
+      that release rather than be added after activation.
+   2. An advisory MUST be published with that release, naming the class
+      of defect, the affected versions, and the behavior of non-upgraded
+      nodes across activation. It need not describe how to reproduce the
+      defect while the defect is not public.
+   3. The change MUST be limited to the mitigation and to what the
+      mitigation requires. Any other consensus-affecting change shipped
+      in the same release takes the standard lane and its own activation
+      height.
+   4. A retroactive PIP MUST be merged within 7 days of activation,
+      stating which condition of this rule was relied on, what notice was
+      actually given, and what the change does.
+   5. A description of the defect sufficient to verify the fix MUST be
+      published within 30 days of activation, or sooner if the defect
+      becomes public by another route.
 5. A retroactive edit to any previously shipped consensus parameter,
    including fork heights on any network, is a consensus change under
-   this PIP and MUST be documented per rule 4.
+   this PIP and MUST be documented per rule 4.4.
 6. The PIPs repository MUST maintain a register file with one entry per
    consensus change activated on Pearl mainnet: height (or release
-   gate), fork class, shipping release, the governing PIP or the word
-   "none", and one line of description. Where the same change also
+   gate), fork class, lane, shipping release, the governing PIP or the
+   word "none", and one line of description. Where the same change also
    activated on testnet, testnet2, regtest or simnet, the entry MUST
    record those heights inside it; they are not separate entries, so the
    entry count and the mainnet change count stay equal. The register
    MUST be backfilled to genesis. Historical entries with no PIP keep
-   "none"; this PIP does not rewrite history, it records it.
+   "none", and entries that predate this PIP carry no lane; this PIP does
+   not rewrite history, it records it.
 7. PIP editors SHOULD decline to mark a Consensus PIP Final while any of
    its activation facts are missing from the register.
 
 ## Rationale
 
-The notice window is sized from measured behavior. Under forcing
-conditions the network's pools adapted within one to two days, so 4,320
-blocks (9.7 days at the 194-second block target) is about 4.9 times the
-two-day adaptation figure. Against the two notice windows actually
-measured it is a large multiple: 19 times the 12 h 14 m 35 s of the
-96,251 softfork, and 149 times the 1 h 33 m 56 s of the 99,000 hard fork.
-Rule 3 constrains when an activation height may fall, not when code may
-ship; rule 1 is the one that gates the scheduling release, and it asks
-only for a Draft PIP. The emergency lane exists because some fixes
-genuinely cannot be pre-announced; the cost of using it is only that the
-documentation debt comes due within two weeks.
+Both windows are sized from measured behavior on this network rather
+than from convention elsewhere.
+
+The standard lane is sized against the adaptation time the network has
+actually shown. Under forcing conditions the network reached full
+compliance about two days after activation, so 3,600 blocks (8.1 days at
+the 194-second block target) is about 4 times that figure, which leaves
+room for a weekend and a missed announcement on either side. Against the
+two notice windows actually measured it is a large multiple: about 16
+times the 12 h 14 m 35 s of the 96,251 softfork, and about 124 times the
+1 h 33 m 56 s of the 99,000 hard fork. Rule 3 constrains when an
+activation height may fall, not when code may ship; rule 1 is the one
+that gates the scheduling release, and it asks only for a Draft PIP.
+
+The expedited lane exists because this network is young, has shipped
+urgent fixes, and will ship more. A single long window with no named
+alternative does not prevent short-notice forks, it only ensures that
+the process document is ignored the first time one is needed, which is
+the state the record already shows. Naming the fast path and pricing it
+is the more durable arrangement. Its floor of 900 blocks (48.5 hours) is
+set at about the two-day compliance figure and is still about 4 times
+the notice given for the 96,251 softfork and about 31 times the notice
+given for the 99,000 hard fork, so the lane that exists for emergencies
+is bounded below by more notice than either measured case actually had.
+
+Rule 4.1 admits that some defects cannot be pre-announced at all, and
+requires the claim to ship with the release rather than be constructed
+afterwards, which turns it into a dated public statement that can be
+weighed later. Rule 4.3 is the one that keeps the lane narrow: a fast
+path is where unrelated work gets carried along, and the release that
+first shipped the most recent hard fork changed 75 files, 32 of them on
+the consensus surface, per the register's entry for it. Rule 4.4 sets
+the documentation debt at 7 days rather than a fortnight, because a
+retroactive PIP written two weeks later is written after the operators
+who needed it have already worked the change out from the diff.
 
 The register exists because the current arrangement puts the work on the
 reader: the record of what Pearl's consensus rules are lives in release
@@ -188,9 +254,15 @@ shares from the activation height on; the observed instance is the
 mainnet hard fork in Motivation item 3, with 1 h 33 m 56 s of notice,
 and unlike the height-71,935 fork it left no path for old mining
 software to keep producing valid work. A minimum notice window spreads
-both risks. The emergency lane preserves the ability to ship urgent
-fixes; requiring retroactive documentation limits its overuse, since
-every use leaves a dated public record. A maintained register also
+both risks. The expedited lane preserves the ability to ship an urgent
+fix, and prices it in disclosure rather than in delay: an advisory at
+release time, a scope limited to the mitigation, a retroactive PIP
+within 7 days, and a defect description within 30 days. Every use
+therefore leaves a dated public record, and a lane used routinely is
+visible as such in the register. The 30-day description in rule 4.5 is
+the term that keeps the lane from becoming a way to hold a known defect
+undocumented indefinitely, which is itself a risk to anyone validating
+the chain independently. A maintained register also
 hardens the network against disputes about which rules were in force at
 a given height, which matters for any party validating history
 independently.
