@@ -20,6 +20,24 @@ wire package at v1.4.1 and against this project's own reader), the
 Rationale gained the differentiation from the published measurement
 study, and three whitepaper quotes were added from sources verified in
 that session. No figure in this draft changed.
+Submitted upstream 2026-08-15, reversing the "never submitted" status
+this comment carried since 2026-08-10. Discussion issue
+pearl-research-labs/pips#9 was opened first per PIP-1 step 1; the three
+pull requests are #10 (process), #11 (disclosure) and #12
+(weight identity), each adding the in-flight path PIPS/pip-9999.md.
+The submitted copy differs from this one in exactly two mechanical ways:
+this internal comment is stripped, and a discussions-to field pointing at
+issue #9 is added. Every substantive correction made for submission was
+applied back here, so the rendered site and the upstream document are the
+same text. Those corrections were: the live-corpus certificate count
+re-run at height 100,121 (100,122 of 100,122, with the 1,122 version 3
+certificates and the version boundary re-confirmed on chain); the seven
+whitepaper quotations re-verified against the live document and their
+stamps moved to 2026-08-15; and, in the process draft, the governance
+record restated as of the day of submission, since opening these very
+pull requests falsified its "no outside contributions and no issues"
+sentence. Before any status change upstream, re-run the reproduction
+commands at the then-current tip.
 -->
 
 ---
@@ -88,7 +106,7 @@ and activation matrices", and the same document envisions "native
 (on-chain) settlement of compute contracts: the chain can verify that a
 certain amount of computation happened on account of Alice asking Bob,
 and settle the payment" (Pearl whitepaper, Planned Upgrades and the
-opening section's future-work discussion; quoted 2026-08-11). Both need a
+opening section's future-work discussion; quoted 2026-08-15). Both need a
 way to state which weights a block committed and to have that statement
 checked by a third party. This standard supplies one with no protocol
 change, and it works on every block already mined.
@@ -171,7 +189,7 @@ For each assertion:
    1-based byte offset into the raw certificate:
 
    | cert version | public data begins at | preceding fields |
-   |---|---|---|
+   | --- | --- | --- |
    | 1 | byte 37 | version (4) + block hash (32) |
    | 2 | byte 41 | version (4) + block hash (32) + public-data length (4) |
    | 3 | byte 41 | identical layout to version 2 |
@@ -258,7 +276,7 @@ network "produces zero useful AI computation" (arXiv:2606.04819, checked
 2026-08-08), which is a negative stated over a property the protocol
 concedes: the whitepaper says Pearl "attracts compute that does not
 necessarily have useful work" (Pearl whitepaper, "Towards a marketplace
-of useful compute"; quoted 2026-08-11). An aggregate produced under this
+of useful compute"; quoted 2026-08-15). An aggregate produced under this
 standard cannot be read that way. It counts assertions about named
 tensors at pinned revisions under a named recipe over a stated block
 population, so a zero means "not these exact bytes, in this space", and
@@ -373,7 +391,7 @@ public checkpoint; no artifact of the dataset is required.
   planned-upgrades commitment to pre-quantization weight and activation
   matrices, the opening section's on-chain settlement of compute
   contracts, and the marketplace motivation's statement about compute
-  that does not necessarily have useful work (all quoted 2026-08-11).
+  that does not necessarily have useful work (all quoted 2026-08-15).
 - pearl-research-labs/pearl v1.4.1, `node/wire/certificate.go`,
   `certificate_v1.go`, `certificate_v2.go` and `certificate_v3.go` (the
   version-first certificate framing and the per-version public-data

@@ -32,6 +32,24 @@ merged document is a permanent public mailbox.
 Before submission: re-run the reproduction commands at the then-current
 tip, and re-verify the external claims marked "checked" or "quoted" with
 their dates.
+Submitted upstream 2026-08-15, reversing the "never submitted" status
+this comment carried since 2026-08-10. Discussion issue
+pearl-research-labs/pips#9 was opened first per PIP-1 step 1; the three
+pull requests are #10 (process), #11 (disclosure) and #12
+(weight identity), each adding the in-flight path PIPS/pip-9999.md.
+The submitted copy differs from this one in exactly two mechanical ways:
+this internal comment is stripped, and a discussions-to field pointing at
+issue #9 is added. Every substantive correction made for submission was
+applied back here, so the rendered site and the upstream document are the
+same text. Those corrections were: the live-corpus certificate count
+re-run at height 100,121 (100,122 of 100,122, with the 1,122 version 3
+certificates and the version boundary re-confirmed on chain); the seven
+whitepaper quotations re-verified against the live document and their
+stamps moved to 2026-08-15; and, in the process draft, the governance
+record restated as of the day of submission, since opening these very
+pull requests falsified its "no outside contributions and no issues"
+sentence. Before any status change upstream, re-run the reproduction
+commands at the then-current tip.
 -->
 
 ---
@@ -78,7 +96,7 @@ rides the next certificate version (version 4 or later); versions 1, 2 and
 
 The whitepaper says the network "attracts compute that does not
 necessarily have useful work" (Pearl whitepaper, "Towards a marketplace
-of useful compute"; quoted 2026-08-11). The certificate format already
+of useful compute"; quoted 2026-08-15). The certificate format already
 records everything needed to identify which weights were multiplied; what
 is missing is a place to record it legibly. This PIP adds the field that
 lets a miner who is running a real model say so, and leaves every other
@@ -154,7 +172,7 @@ on the corrected basis.
    The whitepaper's planned-upgrades section describes a future
    floating-point scheme that works while "forcing the miner to commit to
    the underlying (pre-quantization) weight and activation matrices"
-   (Pearl whitepaper, Planned Upgrades; quoted 2026-08-11). That is the
+   (Pearl whitepaper, Planned Upgrades; quoted 2026-08-15). That is the
    binding half of the problem, and it is already Pearl's stated
    direction. This PIP supplies the legibility half: 28 bytes that name
    which weights the block committed, checkable by anyone against a
@@ -367,7 +385,7 @@ produce a false verified attestation.
 Pearl's proof system is built not to reveal its inputs: the whitepaper's
 privacy section states that "the proof attests only to the correctness
 and integrity of the computation, without revealing any details of the
-inputs themselves" (Pearl whitepaper, Privacy; quoted 2026-08-11). The
+inputs themselves" (Pearl whitepaper, Privacy; quoted 2026-08-15). The
 field is opt-in to preserve that default, so a miner that writes 0x00
 discloses exactly what it discloses today, and scheme 0x02 lets a miner
 prove continuity of an unnamed model to a chosen counterparty without
@@ -496,12 +514,15 @@ certificate version (version 4 or later). No historical block is
 affected: every existing certificate carries the all-zero region, which
 remains valid and means UNATTESTED. That is measured. An independent
 decoder that fails loudly on any nonzero trailer byte has parsed every
-certificate since genesis without one such failure: 99,077 of 99,077
+certificate since genesis without one such failure: 100,122 of 100,122
 canonical blocks carrying a version 1, 2 or 3 certificate, heights 0 to
-99,076, at the index tip of 2026-08-11T23:42:54+02:00 (unit: blocks; this
-count tracks the live corpus and moves with every block). The population
-now includes version 3 certificates, 77 of them, from height 99,000 to
-that tip. Pools, wallets, transaction relay, and non-PoUW validation are
+100,121, at the index tip of 2026-08-15T14:39:32+02:00 (unit: blocks;
+this count tracks the live corpus and moves with every block, so it is
+stated with the height and time it was taken rather than as a standing
+figure). The population includes 1,122 version 3 certificates, heights
+99,000 to that tip; the version boundary was confirmed on chain at the
+same time, height 98,999 carrying version 2 and height 99,000 version 3.
+Pools, wallets, transaction relay, and non-PoUW validation are
 unaffected.
 
 One deployment hazard deserves its own sentence: a pool that vendors

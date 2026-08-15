@@ -35,6 +35,24 @@ measured windows already in the Motivation; the register's reference
 block in consensus-changes.json moves with them, and the site generator
 cross-checks the phrases "3,600 blocks" and "8.1 days at the 194-second
 block target" against this file.
+Submitted upstream 2026-08-15, reversing the "never submitted" status
+this comment carried since 2026-08-10. Discussion issue
+pearl-research-labs/pips#9 was opened first per PIP-1 step 1; the three
+pull requests are #10 (process), #11 (disclosure) and #12
+(weight identity), each adding the in-flight path PIPS/pip-9999.md.
+The submitted copy differs from this one in exactly two mechanical ways:
+this internal comment is stripped, and a discussions-to field pointing at
+issue #9 is added. Every substantive correction made for submission was
+applied back here, so the rendered site and the upstream document are the
+same text. Those corrections were: the live-corpus certificate count
+re-run at height 100,121 (100,122 of 100,122, with the 1,122 version 3
+certificates and the version boundary re-confirmed on chain); the seven
+whitepaper quotations re-verified against the live document and their
+stamps moved to 2026-08-15; and, in the process draft, the governance
+record restated as of the day of submission, since opening these very
+pull requests falsified its "no outside contributions and no issues"
+sentence. Before any status change upstream, re-run the reproduction
+commands at the then-current tip.
 -->
 
 ---
@@ -91,8 +109,9 @@ Pearl's governance record to date, from public artifacts:
 2. The 96,251 softfork shipped in a release published 12 h 14 m 35 s
    before its activation height (release publication timestamp against
    the activation block's timestamp, recomputed 2026-08-11; an earlier
-   estimate in our own register, about 18.5 hours, is not reproducible
-   from those two endpoints). Measured adaptation on the network: one
+   estimate of about 18.5 hours, published in the independent register
+   described under Rationale, is not reproducible from those two
+   endpoints and is corrected here). Measured adaptation on the network: one
    pool stack shipped four releases within 14 hours of activation, and
    the whole network reached full compliance with the new rule about two
    days after the fork.
@@ -112,10 +131,14 @@ Pearl's governance record to date, from public artifacts:
    violated the shipped height were accepted, and a later release moved
    the height after the fact to legalize them (public pull request,
    merged by its author with no review comments; checked 2026-08-07).
-5. The PIP repository's complete history shows no outside contributions
-   and no issues; the research forum its README points contributors to
-   does not exist as of 2026-08-08; the dedicated PIP host name resolves
-   but does not respond (checked 2026-08-05).
+5. Before this proposal, the repository's complete history contained no
+   outside contributions and no issues: eight pull requests, every one
+   from an account affiliated with the project, and no issues at all
+   (checked 2026-08-15). This proposal and its companions are offered as
+   the first such contributions. That is context rather than criticism.
+   A process is only worth writing down if someone outside the project
+   can follow it, and this submission is the first occasion to find out
+   whether this one can be.
 
 None of this is a claim of bad faith. The record shows that release diffs
 are currently the reliable statement of Pearl's consensus rules, and that
