@@ -26,7 +26,7 @@ that session. No figure in this draft changed.
 pip: 9999
 title: Weight-provenance disclosure and verification
 description: A signed, self-contained disclosure format asserting which published model tensors a set of blocks committed, verifiable by anyone from public data.
-author: TODO before submission (operator decision on name or handle)
+author: InverseAltruism (@InverseAltruism)
 status: Draft
 type: Standards Track
 category: Applications

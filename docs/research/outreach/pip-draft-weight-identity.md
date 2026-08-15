@@ -23,16 +23,22 @@ later) because version 3 is now taken; the parsed-certificate count was
 re-run against /v1/status at tip 99,076 that evening; and three
 whitepaper quotes plus arXiv:2603.20421 were added from sources verified
 in that session.
-Before submission: fill in the author line, re-run the reproduction
-commands at the then-current tip, and re-verify the external claims
-marked "checked" or "quoted" with their dates.
+Author line filled 2026-08-15 on operator instruction: InverseAltruism,
+the operator's GitHub handle, in the handle form PIP-1 permits
+("author: <name(s) or handle(s)>"). Contact for submission correspondence
+is inversealtruism@gmail.com; it is deliberately not in the frontmatter,
+because the upstream PIPs carry a bare name there and an address in a
+merged document is a permanent public mailbox.
+Before submission: re-run the reproduction commands at the then-current
+tip, and re-verify the external claims marked "checked" or "quoted" with
+their dates.
 -->
 
 ---
 pip: 9999
 title: Weight-identity commitments for PoUW certificates
 description: Assigns the 28 reserved mining-configuration bytes to an optional, stable identifier of the committed weight operand.
-author: TODO before submission (operator decision on name or handle)
+author: InverseAltruism (@InverseAltruism)
 status: Draft
 type: Standards Track
 category: Consensus

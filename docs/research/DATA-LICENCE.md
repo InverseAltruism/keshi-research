@@ -7,8 +7,13 @@ The repository's code is MIT (see `/LICENSE`). The research datasets under
 (https://creativecommons.org/licenses/by/4.0/): reuse freely with
 attribution. Suggested citation:
 
-> Keshi, "DS-002: weight-provenance scan over the Pearl certificate
-> corpus", 2026. https://github.com/InverseAltruism/keshi-research
+> InverseAltruism (Keshi), "DS-002: weight-provenance scan over the Pearl
+> certificate corpus", 2026. https://doi.org/10.5281/zenodo.21863620
+
+The named author is the project's sole author and maintainer; "Keshi" is
+the project, not a second party. Cite the concept DOI rather than the
+repository URL where the citation needs to be stable: the DOI always
+resolves to the latest deposited version, and a repository can move.
 
 Zenodo deposits of dataset versions carry the same licence and a DOI; cite
 the DOI where one exists. The underlying facts (block headers, certificate

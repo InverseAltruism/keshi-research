@@ -41,7 +41,7 @@ block target" against this file.
 pip: 9999
 title: Consensus-change documentation and activation notice
 description: Requires a PIP and a minimum activation notice for every consensus rule change, and a maintained register of all such changes.
-author: TODO before submission (operator decision on name or handle)
+author: InverseAltruism (@InverseAltruism)
 status: Draft
 type: Process
 created: 2026-08-10
